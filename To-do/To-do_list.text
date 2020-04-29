@@ -1,0 +1,50 @@
+To-do List to finish this paper off and send it on its way. Bye!
+1) Introduction [Desen to populate with bullet points & Max]
+2) Methodology [Desen]
+* ease of access to data
+* Python pipeline - extract, pre-process
+*quicker results, analysis
+*useful for energy market analysts, engineers, etc.
+3) Results [Max]
+4) 3.1 Demand [Max - revise the bullet points to text and comment]
+*REF
+4) 3.2 Forecast [Des - review]
+*Potentially, change this section to Forecasting + Grid Stability indicators
+*add LOLP, DRM here
+*Move this section after Section (Generation)
+*They are also forecasts(?)
+5) 3.3 Generation [Des - review]
+*Intro parag to follow same trend as 3.1
+*Trivial comment: CW to w/c (Monday)Date
+6) 3.4 Imbalance Volume [Des - review]
+*Make this a subsection of "Forecasting + Grid Stability indicators"
+7) 3.5 Frequency
+*Make this a subsection of "Forecasting + Grid Stability indicators"
+*Histogram updated [Des]
+*Make bullet point for Max to populate this text [Des]
+*respond to Feedback Loop [Max]
+8) 3.6 DSR and Ancillary srvices
+*Check if data is avaiable (volume,date,pricing) [Max,Desen]
+*i.e. STOR data, number of voltage measure [Max,Desen]
+*Catch up on Friday. Set time [Max]
+9) 3.7 Market Price 
+10) 3.7.1 LOLP & DRM
+*Make LOLP a subsection of "Forecasting + Grid Stability indicators"
+*Add equation and explanation of LOLP, reserve scarcity prices. [Max]
+11) section 3.7.2 [Des Review]
+12) section 3.7.3 [Des Review]
+13) section 3.7.4 [Max Review, Des Writing]
+14) Discussion
+*Bring all together, Summarize how all changed, and add speculation
+*Draft [Wait till results, Des+Max]
+*Thoughts about a summary table [Max]
+* Give advice to audience and judge pricing schemes [Des,Max]
+*use of IoT, smart meters, controller - load coordination, smart contracts, agile pricing [Des]
+15) Implications
+*make table in Latex (Des)
+*adding more stuff [all]
+16) Conclusions
+*copy from intro
+*summarise contributions
+***This paper encourage further research***
+17) Final check (structure, grammar)
