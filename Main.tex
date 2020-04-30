@@ -188,27 +188,27 @@ This section details the effect of the COVID-19 outbreak on the GB electricity s
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Effect on Demand Profiles}\label{section: Effect on demand profile}
-Comparison of pre- and post-COVID-19 demand profiles
 
-In this section, we analyse and quantify the changes in the electricity consumption due to the COVID-19 mitigation actions taken. The government recommendation to work from home and closure of public spaces such as pubs, restaurants, gyms, etc. took place on the 23rd of May which is shown by the purple profile in Figure \ref{fig:demand_profiles} [REF!]. It is clear from this plot that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) were shut down. Nevertheless, this increased the influence of the domestic consumption pattern that resulted not only in a decreased electricity consumption  but also a changed profile.
+This section analyse and quantify the changes in the electricity consumption caused by the COVID-19 mitigation actions. The government recommended on Wednesday 23rd of May, to work from home and closed public spaces such as pubs, restaurants and gyms. The impact on the electricity demand is shown by the purple profile in Figure \ref{fig:demand_profiles} \cite{GovernmentGOV.UK}. It is clear from this plot that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) shut down. Nevertheless, this increased the influence of the domestic consumption pattern that resulted not only in a decreased electricity consumption but also a changed profile shape.
 
 \begin{figure}[H]
 \centering
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/Demand_profiles.pdf}
-\caption{Aggregated system demand before and after the COVID-19 actions.}\label{fig:demand_profiles}
+\caption{Aggregated system demand before and after the COVID-19 actions}\label{fig:demand_profiles}
 \end{figure}  
 
-Figure \ref{fig:Demand_hist} shows that the distribution of the pre-action demand was more even in comparison to the concentration around 25000MW in the post profile. The demand histogram is also shifted to the left, denoting the more frequent lower demand. It can also be observed that no occurrences were over 38585 MW. The lighter colour (i.e.mostly yellow) peak for the post-action demand show that the range of most occurring demand values is now narrower, meaning there is relatively less variation.
-*Bi-modal: meaning it looks like it has two mean groups of observations
-For creating a predictive model, perhaps this would be divided into two groups
+Figure \ref{fig:Demand_hist}, shows the demand histogram shifted to the left, indicating lower loads. The lighter colour (i.e.mostly yellow) peak for the post-action demand show that the range of most occurring demand values is now narrower, meaning there is less variation. Otherwise, the pre-action demand shows a more disperse and even occurrence profile which looks slightly bi-modal. The bi-modality, meaning that two occurrence centres exist, can be related to work-hours and non work-hours. While during non-work hours the profile is levelled on the base load and work-hours show another load centre. In conclusion, the effects taken after the COVID-19 actions denoting a higher occurrence of lower demands which results in a smoother load profile.
+
+%For creating a predictive model, perhaps this would be divided into two groups
 
 \begin{figure}[H] 
 \centering
 \hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Demand_hist_coloured_sidebyside.pdf}
-\caption{Comparison of pre- and post-COVID-19 demand histograms with normalised occurances. The range of colours from yellow to dark blue correspond to the highest and lowest values.}\label{fig:Demand_hist}
+\caption{Comparison of pre- and post-COVID-19 demand histograms with normalised occurrences. The range of colours from yellow to dark blue correspond to the highest and lowest values.}\label{fig:Demand_hist}
 \end{figure}  
 
-Load duration curves are used in power engineering to visualise the relationship between sorted demand (i.e. ranked descending) and time. It is used to analyse the variation in energy (i.e in Figure \ref{fig:load_duration}, the area of the graph gives the energy used in MWh) and choose base load and peak load power for generators.
+Load duration curves are used in power engineering to visualise the base and peak load and how often certain power demands occur between them. In Figure \ref{fig:load_duration}, the load duration curves are plotted for the pre and post action case. The visual changes are determined in Table \ref{table:load-duration}. While the base load only drops slightly by -9.50\%, the peak load drops much further by -20.31\%. However, the mean load drops the most, namely by -24.08\%, showing that the most load reductions happening between peak and baseload and smoothing the load profile.  %visualise the relationship between sorted demand (i.e. ranked descending) and time. %It is used to analyse the variation in energy (i.e in Figure \ref{fig:load_duration}, the area of the graph gives the energy used in MWh) and choose baseload and peak load power for generators. 
+
 \begin{figure}[b]
 \centering
 \hspace{-25pt}\includegraphics[width=9 cm]{Graphics/Load_duration_curve.pdf}
@@ -216,7 +216,7 @@ Load duration curves are used in power engineering to visualise the relationship
 \end{figure}  
 
 \begin{table}[H]
-\caption{Changes in demand profile using the data frm teh load duration curves. }
+\caption{Changes in demand profile using the data from the load duration curves. }
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g., \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{ccccccc}
@@ -228,51 +228,51 @@ Post & 38585 & \textcolor{red}{-20.31\%} & 27294 & \textcolor{red}{-24.08\%} & 2
 
 \bottomrule
 \end{tabular}
+\label{table:load-duration}
 \end{table}
 
-\textcolor{purple}{
-\textbf{Quick Results so far}
-\begin{itemize}
-    \item 20.31\% decrease in Peak Demand
-    \item 24.08\% decrease in Mean Demand
-    \item Only 10\% decrease in Base Load
-    \item 1 hour shift in "morning peak" - 9 am to 8 am and "evening peak" - 6 pm to 7 pm
-    \item Steeper climb to the "evening peak" - used to be 7500 MW increase over 4 hours, now it is 9500 MW increase in 5 hours.
-    \item Overall decrease in Peak-to-Mean ratio -except  7, 8, 9 am. However, it seems to follow the same morning trend as the pre data which had its max PtM value at 6 am at 0.18. This peak is delayed to 8 am and decreased by 1. 
-    \item Speculation: People wake up later, eat dinner earlier :)
-    \item Standard deviation is smaller by a third of its original value (i.e. 6085). Presumably, this could explain the better performance of forecasting algorithms.
-\end{itemize}
-}
+%\textcolor{purple}{
+%\textbf{Quick Results so far}
+%\begin{itemize}
+%    \item 20.31\% decrease in Peak Demand
+%    \item 24.08\% decrease in Mean Demand
+%    \item Only 10\% decrease in Base Load
+%    \item 1 hour shift in "morning peak" - 9 am to 8 am and "evening peak" - 6 pm to 7 pm
+%    \item Steeper climb to the "evening peak" - used to be 7500 MW increase over 4 hours, now it is 9500 MW increase in 5 hours.
+%    \item Overall decrease in Peak-to-Mean ratio -except  7, 8, 9 am. However, it seems to follow the same morning trend as the pre data which had its max PtM value at 6 am at 0.18. This peak is delayed to 8 am and decreased by 1. 
+%    \item Speculation: People wake up later, eat dinner earlier :)
+%    \item Standard deviation is smaller by a third of its original value (i.e. 6085). Presumably, this could explain the better performance of forecasting algorithms.
+%\end{itemize}
+%}
+
+%Figure \ref{fig: PtM_Ratio_Demand_comp} and \ref{fig: PtM_Ratio_Demand} uses the peak-to-mean ratio ($max/mean$) in order to quantify the variation in the consumption profile. 
 
 
-Figure \ref{fig: PtM_Ratio_Demand_comp} and \ref{fig: PtM_Ratio_Demand} uses the peak-to-mean ratio ($max/mean$) in order to quantify the variation in the consumption profile. 
+%\begin{figure}[H]
+%\centering
+%\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/VarCoeff_comp.pdf}
+%\caption{Comparison of peak-to-mean ratio to visualise the variation in system demand.}\label{fig: PtM_Ratio_Demand_comp}
+%\end{figure}  
+
+%\begin{figure}[H]
+%\centering
+%\hspace{-25pt}\includegraphics[width=7 %cm]{Graphics/PtM_ratio_Demand.pdf}
+%\caption{Overlaying the peak-to-mean ratios to compare the variation in system demand.}\label{fig: PtM_Ratio_Demand}
+%\end{figure}
 
 
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/VarCoeff_comp.pdf}
-\caption{Comparison of peak-to-mean ratio to visualise the variation in system demand.}\label{fig: PtM_Ratio_Demand_comp}
-\end{figure}  
+%\begin{figure}[H]
+%\centering
+%\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Mean_Demand_Profile_hist.pdf}
+%\caption{}
+%\end{figure}  
 
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[width=7 cm]{Graphics/PtM_ratio_Demand.pdf}
-\caption{Overlaying the peak-to-mean ratios to compare the variation in system demand.}\label{fig: PtM_Ratio_Demand}
-\end{figure}
-
-
-% \begin{figure}[H]
-% \centering
-% \hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Mean_Demand_Profile_hist.pdf}
-% \caption{}
-% \end{figure}  
-
-\textcolor{blue}{
-\begin{itemize}
-    \item Coefficient of variation (=standard deviation/mean)
-    \item Peak-to-mean ratio
-    \item Inter-quartile range
-\end{itemize}}
+%\textcolor{blue}{
+%\begin{itemize}
+%    \item Coefficient of variation (=standard deviation/mean)
+%    \item Peak-to-mean ratio
+%    \item Inter-quartile range
+%\end{itemize}}
 
 
 
