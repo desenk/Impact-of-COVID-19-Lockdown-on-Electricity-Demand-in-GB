@@ -183,7 +183,7 @@ Correlating old and new demand data
 %===============================================================
 
 \section{Results}
-This section details the effect of the COVID-19 outbreak on the GB electricity system in several categories which are (1) demand magnitude and profile, (2) generation portfolio, (3)
+This section details the effect of the COVID-19 outbreak on the GB electricity system. Four categories were analysed: (1) demand profile, analysing the new shape and magnitudes, (2) generation portfolio, investigating VRE share and the impact on conventional generation portfolio, (3) load forecasting and grid stability indicators, and finally (4) market prices, including Day-Ahead wholesale market price, system imbalance price and agile price. In particular, the load forecast was analysed in different forecast lengths. Further, the grid stability subsection inspects imbalance volume, system frequency, loss of load probability and the de-rated margin. Wherever possible, the results are presented in a quantitative manner. However, as it is often questionable or leading to distorted conclusion, when comparing only single weeks with completely different weather conditions (i.e. solar radiation, wind speed and temperature), a qualitative approach was chosen to complement the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -299,7 +299,42 @@ Post & 38585 & \textcolor{red}{-20.31\%} & 27294 & \textcolor{red}{-24.08\%} & 2
 % \end{tabular}
 % \end{table}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Changes in Generation Portfolio}\label{sec:Generation portfolio}
+The change in the demand profile leads to change in the generation portfolio. In particular, the lower demand enlarge the shares of variable renewable energy (VRE), namely wind and solar, which further impacts the conventional generation portfolio in the power system. 
+
+\subsubsection{The VRE share growths}
+The hypothesis for a increased VRE share originates from the causality principles in electricity markets and supported by a simple example. 
+First, most generators are scheduled in European electricity markets in merit-order, which means the least marginal cost generators are supplying the power demand. The causality is VRE generators have marginal costs close to zero, which leads to the effect that VRE's are mostly scheduled before any other generation technology in electricity markets \cite{Winkler2016ImpactMatter}. As the VRE infrastructure already exist, preferred in scheduling and the VRE generation is not restricted by the COVID situation, it can be justifiably hypothesised that on average a lower demand increase the shares of VRE. 
+
+Second, to support the hypothesis it must be realised, the VRE share depends beside the total generation or load, on the weather conditions which impact the VRE output in every point in time. Changing weather conditions make it hard to compare any weeks with non-complex methods. Therefore, Figure \ref{fig:generation_effects} illustrate a simplified qualitative example which keeps the VRE generated output stable, representing constant solar and wind conditions in a i) high demand case and ii) low demand case. The high and low demand cases are chosen in such a way that the values are easy to understand and representing the observed changes of the COVID situation in GB. For instance, the in section \ref{section: Effect on demand profile} recognised average changes of the demand where approximately 25 \%, while the average VRE share in March was roughly 25 \% based on ENTSO-E data \cite{ENTSO-E2020ENTSO-EPlatform}. The total demand and generation are set equal in each case, hence, representing a stable power system. As result of the previous hypothesis and Figure \ref{fig:generation_effects}, the average demand reduction lead to higher VRE shares. The results from Figure \ref{fig:generation_effects}, further indicate that the VRE share could increases in the range of 5-10 \% in the GB system due to the new demand profile.
+
+
+\begin{figure}[H]
+\centering
+\hspace{-25pt}\includegraphics[trim={0cm 2cm 0cm 2cm},clip,width=1\textwidth]{Graphics/Illustrative-VRE-share-increase.pdf}
+\caption{Qualitative example of the impact of demand changes on the VRE share. Share of VRE share, and ratio demand changes equal roughly the UK case, check \protect\cite{ENTSO-E2020ENTSO-EPlatform} and section \protect\ref{section: Effect on demand profile}, respectively.}
+\label{fig:generation_effects}
+\end{figure} 
+
+\subsubsection{The impact on the conventional generation portfolio}
+
+The conventional generation portfolio, including all generation assets with marginal cost above solar and wind technologies, are expected to decrease in operation time compared to the situation without lock-down. The reason is beside the lower total demand, the higher share of VRE assets. The higher share of VRE assets at low demand cause additionally a need for more flexibility in the power system - such as provided from gas plants \cite{Hirth2014TheVariability}. If inflexible plants are not reducing their generation the more often negative prices will occur \cite{IEA2016Re-poweringSystems.,Cochran2013MarketSystems}.
+
+%Therefore, the question arises how to compare the VRE share for two weeks with different VRE potential. The answer is factorising both weeks to each other.
+
+%In Figure \ref{fig:generation_effects}, a pre-COVID week was factorised with a post-COVID week for the absolute VRE generation and the total VRE share in the power system. When looking on the lock-down day, the VRE generation increased from pre- to post COVID week by 126 \%, while the total VRE share increased by 169 \%, which result in a difference of 43 \%. On typical days the percentage difference might vary in small ranges as new VRE capacity might be added to the power system or due to load variations. Otherwise, the lock-down lead to a drastic lower demand profile, which increased the percentage difference over-proportional. One could question why in Figure \ref{fig:generation_effects} the percentage difference on Sunday is low. One reason is that on a typical Sunday most businesses are closed and therefore the load profile doesn't vary too much from COVID load profile. In conclusion, the observed data can interpreted as evidence that the lower demand leads to a higher share of VRE in the power system. 
+
+%\begin{figure}[H]
+%\centering
+%\hspace{-25pt}\includegraphics[trim={0cm 2.5cm 0cm 2.5cm},clip,width=1\textwidth]{Graphics/Weather-independent-VRE-Share-increase.pdf}
+%\caption{Percentage difference for i) VRE generation and ii) VRE share in the power system in the pre- and post-COVID week, 02-09 March and 22-28 March, respectively. While zero percentage represent the pre-COVID daily baseline, the coloured points represent a grow or decrease factor for the post-COVID week. Data extracted from ENTSO-E transparency platform \protect\cite{ENTSO-E2020ENTSO-EPlatform}.}
+%\label{fig:generation_effects}
+%\end{figure} 
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Load Forecasting and Grid Stability}
 \subsection{Effects on Demand Forecast Error}\label{DemandForecastError}
 In this chapter, the short-term load forecast effects due to COVID-19 are analysed in the GB power system. In contrast to mid- and long-term load forecast, which make predictions above months and years, respectively, the short-term load forecast make predictions for hours up to weeks before the settlement period \cite{SahayDayNetwork,Khuntia2016ForecastingReview}. Short-term load forecasting plays an important role in scheduling the power plants efficiently in electricity market, as economic dispatch and unit commitment requires load forecasts \cite{He2020Day-aheadForest}. As result, improving the forecast accuracy lead to a more reliable and affordable power system \cite{SahayDayNetwork}. 
 
@@ -358,39 +393,6 @@ Of course the change of the forecast error cannot be solely retraced to the lock
 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Changes in Generation Portfolio}\label{sec:Generation portfolio}
-The change in the demand profile leads to change in the generation portfolio. In particular, the lower demand enlarge the shares of variable renewable energy (VRE), namely wind and solar, which further impacts the conventional generation portfolio in the power system. 
-
-\subsubsection{The VRE share growths}
-The hypothesis for a increased VRE share originates from the causality principles in electricity markets and supported by a simple example. 
-First, most generators are scheduled in European electricity markets in merit-order, which means the least marginal cost generators are supplying the power demand. The causality is VRE generators have marginal costs close to zero, which leads to the effect that VRE's are mostly scheduled before any other generation technology in electricity markets \cite{Winkler2016ImpactMatter}. As the VRE infrastructure already exist, preferred in scheduling and the VRE generation is not restricted by the COVID situation, it can be justifiably hypothesised that on average a lower demand increase the shares of VRE. 
-
-Second, to support the hypothesis it must be realised, the VRE share depends beside the total generation or load, on the weather conditions which impact the VRE output in every point in time. Changing weather conditions make it hard to compare any weeks with non-complex methods. Therefore, Figure \ref{fig:generation_effects} illustrate a simplified qualitative example which keeps the VRE generated output stable, representing constant solar and wind conditions in a i) high demand case and ii) low demand case. The high and low demand cases are chosen in such a way that the values are easy to understand and representing the observed changes of the COVID situation in GB. For instance, the in section \ref{section: Effect on demand profile} recognised average changes of the demand where approximately 25 \%, while the average VRE share in March was roughly 25 \% based on ENTSO-E data \cite{ENTSO-E2020ENTSO-EPlatform}. The total demand and generation are set equal in each case, hence, representing a stable power system. As result of the previous hypothesis and Figure \ref{fig:generation_effects}, the average demand reduction lead to higher VRE shares. The results from Figure \ref{fig:generation_effects}, further indicate that the VRE share could increases in the range of 5-10 \% in the GB system due to the new demand profile.
-
-
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[trim={0cm 2cm 0cm 2cm},clip,width=1\textwidth]{Graphics/Illustrative-VRE-share-increase.pdf}
-\caption{Qualitative example of the impact of demand changes on the VRE share. Share of VRE share, and ratio demand changes equal roughly the UK case, check \protect\cite{ENTSO-E2020ENTSO-EPlatform} and section \protect\ref{section: Effect on demand profile}, respectively.}
-\label{fig:generation_effects}
-\end{figure} 
-
-\subsubsection{The impact on the conventional generation portfolio}
-
-The conventional generation portfolio, including all generation assets with marginal cost above solar and wind technologies, are expected to decrease in operation time compared to the situation without lock-down. The reason is beside the lower total demand, the higher share of VRE assets. The higher share of VRE assets at low demand cause additionally a need for more flexibility in the power system - such as provided from gas plants \cite{Hirth2014TheVariability}. If inflexible plants are not reducing their generation the more often negative prices will occur \cite{IEA2016Re-poweringSystems.,Cochran2013MarketSystems}.
-
-%Therefore, the question arises how to compare the VRE share for two weeks with different VRE potential. The answer is factorising both weeks to each other.
-
-%In Figure \ref{fig:generation_effects}, a pre-COVID week was factorised with a post-COVID week for the absolute VRE generation and the total VRE share in the power system. When looking on the lock-down day, the VRE generation increased from pre- to post COVID week by 126 \%, while the total VRE share increased by 169 \%, which result in a difference of 43 \%. On typical days the percentage difference might vary in small ranges as new VRE capacity might be added to the power system or due to load variations. Otherwise, the lock-down lead to a drastic lower demand profile, which increased the percentage difference over-proportional. One could question why in Figure \ref{fig:generation_effects} the percentage difference on Sunday is low. One reason is that on a typical Sunday most businesses are closed and therefore the load profile doesn't vary too much from COVID load profile. In conclusion, the observed data can interpreted as evidence that the lower demand leads to a higher share of VRE in the power system. 
-
-%\begin{figure}[H]
-%\centering
-%\hspace{-25pt}\includegraphics[trim={0cm 2.5cm 0cm 2.5cm},clip,width=1\textwidth]{Graphics/Weather-independent-VRE-Share-increase.pdf}
-%\caption{Percentage difference for i) VRE generation and ii) VRE share in the power system in the pre- and post-COVID week, 02-09 March and 22-28 March, respectively. While zero percentage represent the pre-COVID daily baseline, the coloured points represent a grow or decrease factor for the post-COVID week. Data extracted from ENTSO-E transparency platform \protect\cite{ENTSO-E2020ENTSO-EPlatform}.}
-%\label{fig:generation_effects}
-%\end{figure} 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 
 \subsection{Changes in Imbalance Volume}\label{section:ImbalanceVolume}
@@ -539,7 +541,7 @@ The imbalance price is the price set by the system operator for every settlement
 
 To understand possibles impacts of the COVID situation on the imbalance price, it dismantled in its components. The imbalance price is the price which must be paid for actions that the system operator choose to resolve the imbalance. However, the reason for the balancing action can vary. It could be either a i) energy balancing or ii) system balancing motivated action in the 30min settlement period \cite{ELEXON2019GuidanceBritain}. 
 
-According to \cite{ELEXON2019GuidanceBritain}, the energy balancing action in the "Balancing Mechanism"(BM) make sure that the energy amount of the physical notification is accomplished. This type of balancing action is usually priced by Bid-Offer scheme. The merit-order wise choice of Bid-Offers, meaning cheap actions first, is preferred to reduce the balancing cost. Though, this is not always possible due to technical limitations of generators, demands and networks. An example for a technical limitation of a BM-generator is a non-suitable ramp-up rate, or a limitation for the network, an already congested line which would not allow more generation. Therefore, not only the cheapest BM Bid-Offer prices are selected or resolved by the system operator. In the BM units are usually priced by the utilisation cost, however, short term operating reserves (STOR) take a special role for the stability and priced by the greater price of i) utilisation or ii) reserve scarcity price. Whereby, the reserve scarcity price is the product of the Loss of Load Probability (LoLP) and Value of Lost Load (VoLL). 
+According to \cite{ELEXON2019GuidanceBritain}, the energy balancing action in the "Balancing Mechanism"(BM) make sure that the energy amount of the physical notification is accomplished. This type of balancing action is usually priced by Bid-Offer scheme. The merit-order wise choice of Bid-Offers, meaning cheap actions first, is preferred to reduce the balancing cost. Though, this is not always possible due to technical limitations of generators, demands and networks. An example for a technical limitation of a BM-generator is a non-suitable ramp-up rate, or a limitation for the network, an already congested line which would not allow more generation. Therefore, not only the cheapest BM Bid-Offer prices are selected or resolved by the system operator. In the BM, units are usually priced by the utilisation cost, however, short term operating reserves (STOR) take a special role for the stability and priced by the greater price between i) utilisation price or ii) reserve scarcity price. Whereby, the reserve scarcity price is the product of the Loss of Load Probability (LoLP) and Value of Lost Load (VoLL). 
 
 For the purpose of energy balancing, the system operator might additionally purchase non-BM services as "Balancing Service Adjustment Action" \cite{Nationalgrid2017ProcurementSO}. Drivers for such an adjustment action could be a more economical or specific necessary balancing characteristics from non-BM services, such as ancillary services or "other services" according to \cite{Nationalgrid2018BalancingStatement}. These non-BM actions are priced in capacity or energy or both ways and form balancing service adjustment data, consists of adjusted buy and sell prices, which adjust the imbalance price of the previously described BM \cite{Nationalgrid2017ProcurementSO,Nationalgrid2018BalancingStatement}.
 
