@@ -514,12 +514,18 @@ The on average higher share of VRE generation assets (see \ref{generation_effect
 
 \subsubsection{LOLP \& DRM}\label{section:LOLP_DRM}
 
-Loss of load probability (LOLP) is used for reserve scarcity price calculations. In other words, as the NAtional Grid predicts higher probability of loss of load, the balacing mechanism is willing to pay higher prices for balancing at the time of reserve scarcity. Due to the abrupt changes in the demand profile and perhaps inflexibility of the available generation, the National Grid predicted a higher LOLP during the evening of the 25th of March which is the first official day of lock-down (see Figure \ref{fig:LOLP_25_03}. Despite the fact that it was predicted 12 hours in advance, the 1 hour ahead LOLP forecast is 4.5 times higher. This implies that there was a reserve scarcity and/or that the grid was under stress.
+Loss of load probability (LOLP) is an indicator for system reliability measured by the system operator for each settlement period \cite{ELEXON2019GuidanceBritain}. For instance, when National Grid predicts higher probability of loss of load, the balancing mechanism is willing to pay higher prices for balancing at the time of reserve scarcity. The methodology to calculate the LOLP can be found in \cite{Elexon2019LossStatement}. The higher prices at high LOLP levels are also known as reserve scarcity prices, which are the product of LOLP and the value of lost load (VoLL). Whereby, the VoLL is determined through the assessment of how much value consumers on average attribute to the security of supply - currently set on £6000/MWh \cite{ELEXON2019GuidanceBritain}. 
+
+\[ \text{Reserve Scarcity Price} = \text{Lost of Load Probability} * \text{Value of Lost Load} \]
+
+Due to the abrupt changes in the demand profile and eventually the inflexibility of the available generation, National Grid predicted a higher LOLP during the evening of the 25th of March which is the first official day of lock-down (see Figure \ref{fig:LOLP_25_03}. Despite the fact that it was predicted 12 hours in advance, the 1 hour ahead LOLP forecast is 4.5 times higher. This implies that there was a reserve scarcity and/or that the grid was under stress.
 
 \begin{figure}[H]\centering
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-23no4H.pdf}
 \caption{LOLP variation Pre and Post.}\label{fig:LOLP_25_03}
 \end{figure}  
+
+%%%%%%%%%%%%%%%
 \subsubsection{Day-Ahead wholesale market price}\label{sec:day-ahead wholesale market price}
 
 The Day-Ahead market objective is to define a clearing energy price in which supply meets the demand at any given hour of the day. To do so, a merit order model is used to correctly dispatch power plants by sorting the existing generation units from low to high marginal operating costs. Once the generation meets the demand curve the clearing market price or equilibrium is achieved by minimising the generation cost \cite{Maekawa2018TheExchange}. Figure \ref{fig:wholesale-market-effects} shows graphically the process of the merit order model and the location of the clearing price as a result of the intersection of the supply and demand curves. The demand is given as net demand which subtracts the VRE generation from the total demand. This is a common strategy to illustrate the merit-order, since the solar and wind generation plants have marginal cost close to zero, making them always dispatched so far no network or other operational constraints exist \cite{Hirth2014TheVariability}. 
