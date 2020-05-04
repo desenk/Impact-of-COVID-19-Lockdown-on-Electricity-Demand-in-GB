@@ -109,7 +109,7 @@ The outbreak of SARS-COV-2 disease 2019 (COVID-19) abruptly changed the patterns
 %===============================================================
 
 \begin{document}
-
+\tableofcontents
 %===============================================================
 %                           INTRO
 %===============================================================
@@ -187,7 +187,7 @@ This section details the effect of the COVID-19 outbreak on the GB electricity s
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Effect on Demand Profiles}\label{section: Effect on demand profile}
+\subsection{Demand Profiles}\label{section: Effect on demand profile}
 
 This section analyse and quantify the changes in the electricity consumption caused by the COVID-19 mitigation actions. The government recommended on Wednesday 23rd of May, to work from home and closed public spaces such as pubs, restaurants and gyms. The impact on the electricity demand is shown by the purple profile in Figure \ref{fig:demand_profiles} \cite{GovernmentGOV.UK}. It is clear from this plot that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) shut down. Nevertheless, this increased the influence of the domestic consumption pattern that resulted not only in a decreased electricity consumption but also a changed profile shape.
 
@@ -301,7 +301,7 @@ Post & 38585 & \textcolor{red}{-20.31\%} & 27294 & \textcolor{red}{-24.08\%} & 2
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Changes in Generation Portfolio}\label{sec:Generation portfolio}
+\subsection{Generation Portfolio}\label{sec:Generation portfolio}
 The change in the demand profile leads to change in the generation portfolio. In particular, the lower demand enlarge the shares of variable renewable energy (VRE), namely wind and solar, which further impacts the conventional generation portfolio in the power system. 
 
 \subsubsection{The VRE share growths}
@@ -318,7 +318,7 @@ Second, to support the hypothesis it must be realised, the VRE share depends bes
 \label{fig:generation_effects}
 \end{figure} 
 
-\subsubsection{The impact on the conventional generation portfolio}
+\subsubsection{Impact on the conventional generation portfolio}
 
 The conventional generation portfolio, including all generation assets with marginal cost above solar and wind technologies, are expected to decrease in operation time compared to the situation without lock-down. The reason is beside the lower total demand, the higher share of VRE assets. The higher share of VRE assets at low demand cause additionally a need for more flexibility in the power system - such as provided from gas plants \cite{Hirth2014TheVariability}. If inflexible plants are not reducing their generation the more often negative prices will occur \cite{IEA2016Re-poweringSystems.,Cochran2013MarketSystems}.
 
@@ -334,8 +334,8 @@ The conventional generation portfolio, including all generation assets with marg
 %\end{figure} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsection{Load Forecasting and Grid Stability}
-\subsection{Effects on Demand Forecast Error}\label{DemandForecastError}
+\subsection{Forecasting and Grid Stability}
+\subsubsection{Load Forecast Error}\label{DemandForecastError}
 In this chapter, the short-term load forecast effects due to COVID-19 are analysed in the GB power system. In contrast to mid- and long-term load forecast, which make predictions above months and years, respectively, the short-term load forecast make predictions for hours up to weeks before the settlement period \cite{SahayDayNetwork,Khuntia2016ForecastingReview}. Short-term load forecasting plays an important role in scheduling the power plants efficiently in electricity market, as economic dispatch and unit commitment requires load forecasts \cite{He2020Day-aheadForest}. As result, improving the forecast accuracy lead to a more reliable and affordable power system \cite{SahayDayNetwork}. 
 
 Two different short-term load forecast were analysed in this study, the Day-Ahead total load forecast (DAF) and the transmission system final load forecast (TSF). The DAF and TSF differ in methodology and forecast length. First, in regard to the methodology, the DAF represent a forecast for the total load in the power system, which equals the sum of generated power on both, TSO and DSO networks \cite{ENTSO-E2020ENTSO-EPlatform}. Otherwise TSF, represents a load forecast which equals the sum of generation which can be seen from TSO network only - this include, though, generation from pump storage and embedded large power plant on DSO network level \cite{NationalGrid2020THE40}. The TSF can be therefore interpreted as the "net demand" which the electricity market participants must supply while the DAF represents the real experienced total load in the power system. Second, the forecast length, which describes the time from forecast publication until actual operation time, varies in the collected data for DAF and TSF, see Figure \ref{fig:forecast_length_explanation}. The DAF is published only once a day and predict for the next day the average demand in each settlement period, hence, the forecast length vary from 12-36 hours \cite{ENTSO-E2020ENTSO-EPlatform}. Similarly, the TSF publishes a Day-Ahead forecast, however each settlement period is updated in the TSF data until it reaches the final TSF which predicts the next average demand in the settlement period 1:15 h ahead \cite{ELEXON2020ELEXONBMRS}.
@@ -391,49 +391,9 @@ Of course the change of the forecast error cannot be solely retraced to the lock
 
 %A previous note. The Day-Ahead load forecast turns out to be more precise due to new more steady load profile. The more steady load profile reduces the typically large load-change gradients, which are apparently responsible for uncertainty in the DA-load forecast.
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-
-\subsection{Changes in Imbalance Volume}\label{section:ImbalanceVolume}
-
-An imbalance is prevalent in the power system when supply does not match demand. If the imbalance is not tackled, it could lead to an unstable frequency and finally black-outs. It is therefore the System Operators (SO) responsibility to keep the balance in the system \cite{ELEXON2020ELEXONBMRS}. All accepted balancing measures in a settlement period are given by the net imbalance volume (NIV), which represents the total sum of positive and negative system management and energy balancing measure in the settlement period \cite{ELEXON2020ELEXONBMRS}. In a perfect market the power plants are scheduled at gate-closure that demand equals supply at any settlement period to ensure a NIV close to zero. However, the energy balance in a settlement period is usually not met, since \cite{ELEXON2019GuidanceBritain}:
-\begin{itemize}
-    \item Demand prediction errors by suppliers
-    \item Generation prediction errors by generators (i.e. not able to tightly control the operation of intermittent units)
-    \item Problems in transmission lines
-    \item Balance must exist at every instant, but market trades in half-hour settlement periods 
-\end{itemize}
-
-In section \ref{DemandForecastError}, it was recognised the short-length load forecast accuracy decreased slightly. The consequences of this poorer short-length forecast are amplified in the NIV and cause the NIV to grow significantly compared to all other calendar weeks in 2020, see Figure \ref{fig:ImbalanceVolume_over_2020}. Which means whatever changed at the lock-down week, increased the amount and volume of balancing measures in the power system.
-
-
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[trim={0cm 2cm 6.5cm 3.5cm},clip,width=0.7\textwidth]{Graphics/Illustration-Imbalance-2020.pdf}
-\caption{The weekly average share of imbalance volume factorised by the actual total load. Data from ENTSO-E \protect\cite{ENTSO-E2020ENTSO-EPlatform}}
-\label{fig:ImbalanceVolume_over_2020}
-\end{figure} 
-
-The higher share of VRE seems to be the main driver for the increasing imbalance in the power system after the lock-down. In Figure \ref{fig:ImbalanceVolume-daily}, the imbalance volume was weighted to the actual total system demand for a pre- and post-COVID week. On the secondary axes is VRE share plotted. Remarkable is the correlation between weighted imbalance volume and the VRE share after the lock-down. The correlation might be not a permanent condition in future. When analysing data from January to March, a correlation between VRE share and imbalance volume was discovered roughly 20\% of the time, though, at approximately 80\% of the time there is no clear correlation visible. Nevertheless, a clear correlation between VRE share and imbalance volume is observed after the lock-down, which indicates that the increasing VRE share is the main driver for the higher imbalance volume. The reason for that cannot be precisely untangled as four things can cause a imbalance, generation and demand prediction errors, network constraints, and the balance need at every instance. 
-
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[trim={0cm 2cm 2.5cm 4cm},clip,width=1\textwidth]{Graphics/Illustration-Imbalance-2weeks.pdf}
-\caption{Daily average share of imbalance volume and share of VRE for one pre- and post-COVID week, 02-09 March and 22-28 March, respectively. All data available at \protect\cite{ELEXON2020ELEXONBMRS}.}\label{fig:ImbalanceVolume-daily}
-\end{figure} 
-
-The effect of higher VRE shares explains the slightly poorer performance of the short-length load forecast TSF, as embedded VRE, which consists of 13 GW solar and 6 GW wind capacity in 2018,  cause load forecast errors \cite{NationalgridESO2018QuarterlyMarch18, NationalGridESO2019EnergyRoadmap}. Contrary, the Day-Ahead load forecast improved, so there might be a trade-off between the benefit of smoother load-profiles and the bad influence of high VRE shares on forecast errors. As summary, it seems that depending on the forecast length, the COVID situation causes improved or worse load forecast performance, see Figure \ref{fig:Illustrative-forecast-summary}. Shorter load forecast-length drop in performance, while longer forecast-length increase in performance.
-
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[trim={-1cm 3cm 3cm 3cm},clip,width=1\textwidth]{Graphics/Illustrative-forecast-summary.pdf}
-\caption{Illustrative effect of COVID on the forecast accuracy compared to pre-COVID weeks. TSF and DAF indicate the transmission system forecast and total Day-Ahead forecast, respectively, as described in section \ref{DemandForecastError}.}\label{fig:Illustrative-forecast-summary}
-\end{figure} 
-
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\subsection{Deviations in  System Frequency}
+\subsubsection{Deviations in  System Frequency}
 
 The system frequency describe the periodic form of sinusoidal current and voltage signals in the nowadays alternating current (AC) power system. It is measured by Hertz or cycles per second. In the European power system, the frequency is standardised to 50 HZ, which describe a full sinusoidal cycle in 0.02 seconds. However, the frequency is continuously fluctuating due to the mismatch in supply and demand, and the introduction of harmonics. It is the TSO responsibility to keep the frequency within the +/-1\% limits, 50.5 and 49.5 Hz, respectively \cite{ELEXON2020ELEXONBMRS}. Any higher deviations could lead to substantial malfunctions of many devices.
 
@@ -507,11 +467,45 @@ The on average higher share of VRE generation assets (see \ref{generation_effect
 %generation portofolio and impact intertia
 % Sum What the change in inertia will do to the frequency?
 
-\subsection{Ancillary Services/Demand-side Response}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsubsection{Imbalance Volume}\label{section:ImbalanceVolume}
+
+An imbalance is prevalent in the power system when supply does not match demand. If the imbalance is not tackled, it could lead to an unstable frequency and finally black-outs. It is therefore the System Operators (SO) responsibility to keep the balance in the system \cite{ELEXON2020ELEXONBMRS}. All accepted balancing measures in a settlement period are given by the net imbalance volume (NIV), which represents the total sum of positive and negative system management and energy balancing measure in the settlement period \cite{ELEXON2020ELEXONBMRS}. In a perfect market the power plants are scheduled at gate-closure that demand equals supply at any settlement period to ensure a NIV close to zero. However, the energy balance in a settlement period is usually not met, since \cite{ELEXON2019GuidanceBritain}:
+\begin{itemize}
+    \item Demand prediction errors by suppliers
+    \item Generation prediction errors by generators (i.e. not able to tightly control the operation of intermittent units)
+    \item Problems in transmission lines
+    \item Balance must exist at every instant, but market trades in half-hour settlement periods 
+\end{itemize}
+
+In section \ref{DemandForecastError}, it was recognised the short-length load forecast accuracy decreased slightly. The consequences of this poorer short-length forecast are amplified in the NIV and cause the NIV to grow significantly compared to all other calendar weeks in 2020, see Figure \ref{fig:ImbalanceVolume_over_2020}. Which means whatever changed at the lock-down week, increased the amount and volume of balancing measures in the power system.
 
 
-\subsection{The effects on Market Price}\label{section:Market price}
+\begin{figure}[H]
+\centering
+\hspace{-25pt}\includegraphics[trim={0cm 2cm 6.5cm 3.5cm},clip,width=0.7\textwidth]{Graphics/Illustration-Imbalance-2020.pdf}
+\caption{The weekly average share of imbalance volume factorised by the actual total load. Data from ENTSO-E \protect\cite{ENTSO-E2020ENTSO-EPlatform}}
+\label{fig:ImbalanceVolume_over_2020}
+\end{figure} 
 
+The higher share of VRE seems to be the main driver for the increasing imbalance in the power system after the lock-down. In Figure \ref{fig:ImbalanceVolume-daily}, the imbalance volume was weighted to the actual total system demand for a pre- and post-COVID week. On the secondary axes is VRE share plotted. Remarkable is the correlation between weighted imbalance volume and the VRE share after the lock-down. The correlation might be not a permanent condition in future. When analysing data from January to March, a correlation between VRE share and imbalance volume was discovered roughly 20\% of the time, though, at approximately 80\% of the time there is no clear correlation visible. Nevertheless, a clear correlation between VRE share and imbalance volume is observed after the lock-down, which indicates that the increasing VRE share is the main driver for the higher imbalance volume. The reason for that cannot be precisely untangled as four things can cause a imbalance, generation and demand prediction errors, network constraints, and the balance need at every instance. 
+
+\begin{figure}[H]
+\centering
+\hspace{-25pt}\includegraphics[trim={0cm 2cm 2.5cm 4cm},clip,width=1\textwidth]{Graphics/Illustration-Imbalance-2weeks.pdf}
+\caption{Daily average share of imbalance volume and share of VRE for one pre- and post-COVID week, 02-09 March and 22-28 March, respectively. All data available at \protect\cite{ELEXON2020ELEXONBMRS}.}\label{fig:ImbalanceVolume-daily}
+\end{figure} 
+
+The effect of higher VRE shares explains the slightly poorer performance of the short-length load forecast TSF, as embedded VRE, which consists of 13 GW solar and 6 GW wind capacity in 2018,  cause load forecast errors \cite{NationalgridESO2018QuarterlyMarch18, NationalGridESO2019EnergyRoadmap}. Contrary, the Day-Ahead load forecast improved, so there might be a trade-off between the benefit of smoother load-profiles and the bad influence of high VRE shares on forecast errors. As summary, it seems that depending on the forecast length, the COVID situation causes improved or worse load forecast performance, see Figure \ref{fig:Illustrative-forecast-summary}. Shorter load forecast-length drop in performance, while longer forecast-length increase in performance.
+
+\begin{figure}[H]
+\centering
+\hspace{-25pt}\includegraphics[trim={-1cm 3cm 3cm 3cm},clip,width=1\textwidth]{Graphics/Illustrative-forecast-summary.pdf}
+\caption{Illustrative effect of COVID on the forecast accuracy compared to pre-COVID weeks. TSF and DAF indicate the transmission system forecast and total Day-Ahead forecast, respectively, as described in section \ref{DemandForecastError}.}\label{fig:Illustrative-forecast-summary}
+\end{figure} 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsubsection{LOLP \& DRM}\label{section:LOLP_DRM}
 
 Loss of load probability (LOLP) is an indicator for system reliability measured by the system operator for each settlement period \cite{ELEXON2019GuidanceBritain}. For instance, when National Grid predicts higher probability of loss of load, the balancing mechanism is willing to pay higher prices for balancing at the time of reserve scarcity. The methodology to calculate the LOLP can be found in \cite{Elexon2019LossStatement}. The higher prices at high LOLP levels are also known as reserve scarcity prices, which are the product of LOLP and the value of lost load (VoLL). Whereby, the VoLL is determined through the assessment of how much value consumers on average attribute to the security of supply - currently set on £6000/MWh \cite{ELEXON2019GuidanceBritain}. 
@@ -524,6 +518,13 @@ Due to the abrupt changes in the demand profile and eventually the inflexibility
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-23no4H.pdf}
 \caption{LOLP variation Pre and Post.}\label{fig:LOLP_25_03}
 \end{figure}  
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%\subsection{Ancillary Services/Demand-side Response}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{The effects on Market Price}\label{section:Market price}
 
 %%%%%%%%%%%%%%%
 \subsubsection{Day-Ahead wholesale market price}\label{sec:day-ahead wholesale market price}
