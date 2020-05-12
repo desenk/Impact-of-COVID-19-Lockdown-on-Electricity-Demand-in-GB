@@ -189,7 +189,9 @@ This section details the effect of the COVID-19 outbreak on the GB electricity s
 
 \subsection{Demand Profiles}\label{section: Effect on demand profile}
 
-This section analyse and quantify the changes in the electricity consumption caused by the COVID-19 mitigation actions. The government recommended on Wednesday 23rd of May, to work from home and closed public spaces such as pubs, restaurants and gyms. The impact on the electricity demand is shown by the purple profile in Figure \ref{fig:demand_profiles} \cite{GovernmentGOV.UK}. It is clear from this plot that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) shut down. Nevertheless, this increased the influence of the domestic consumption pattern that resulted not only in a decreased electricity consumption but also a changed profile shape.
+This section analyse and quantify the changes in the electricity consumption caused by the COVID-19 mitigation actions. The government recommended on Wednesday 23rd of May, to work from home and closed public spaces such as pubs, restaurants and sport facilities. The impact on the electricity demand is shown by the purple profile in Figure \ref{fig:demand_profiles} \cite{GovernmentGOV.UK}. The plot illustrate that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) shut down.
+Beside the demand reduction, the lock-down influenced the consumption pattern which results in a changed load profile shape. 
+%Old alternative: Nevertheless, this increased the influence of the domestic consumption pattern that resulted not only in a decreased electricity consumption but also a changed profile shape.
 
 \begin{figure}[H]
 \centering
@@ -199,7 +201,7 @@ This section analyse and quantify the changes in the electricity consumption cau
 
 Figure \ref{fig:Demand_hist}, shows the demand histogram shifted to the left, indicating lower loads. The lighter colour (i.e.mostly yellow) peak for the post-action demand show that the range of most occurring demand values is now narrower, meaning there is less variation. Otherwise, the pre-action demand shows a more disperse and even occurrence profile which looks slightly bi-modal. The bi-modality, meaning that two occurrence centres exist, can be related to work-hours and non work-hours. While during non-work hours the profile is levelled on the base load and work-hours show another load centre. In conclusion, the effects taken after the COVID-19 actions denoting a higher occurrence of lower demands which results in a smoother load profile.
 
-%For creating a predictive model, perhaps this would be divided into two groups
+%General Note: For creating a predictive model, perhaps this would be divided into two groups
 
 \begin{figure}[H] 
 \centering
@@ -207,9 +209,10 @@ Figure \ref{fig:Demand_hist}, shows the demand histogram shifted to the left, in
 \caption{Comparison of pre- and post-COVID-19 demand histograms with normalised occurrences. The range of colours from yellow to dark blue correspond to the highest and lowest values.}\label{fig:Demand_hist}
 \end{figure}  
 
-Load duration curves are used in power engineering to visualise the base and peak load and how often certain power demands occur between them. In Figure \ref{fig:load_duration}, the load duration curves are plotted for the pre and post action case. The visual changes are determined in Table \ref{table:load-duration}. While the base load only drops slightly by -9.50\%, the peak load drops much further by -20.31\%. However, the mean load drops the most, namely by -24.08\%, showing that the most load reductions happening between peak and baseload and smoothing the load profile.  %visualise the relationship between sorted demand (i.e. ranked descending) and time. %It is used to analyse the variation in energy (i.e in Figure \ref{fig:load_duration}, the area of the graph gives the energy used in MWh) and choose baseload and peak load power for generators. 
+Load duration curves are used in power engineering to visualise the base and peak load and how often certain power demands occur between them. In Figure \ref{fig:load_duration}, the load duration curves are plotted for the pre and post action case. The visual changes are determined in Table \ref{table:load-duration}. While the base load only drops slightly by -9.50\%, the peak load drops much further by -20.31\%. However, the mean load drops the most, namely by -24.08\%, showing that the most load reductions happening between peak and baseload and smoothing the load profile.  
+%General Note: visualise the relationship between sorted demand (i.e. ranked descending) and time. %It is used to analyse the variation in energy (i.e in Figure \ref{fig:load_duration}, the area of the graph gives the energy used in MWh) and choose baseload and peak load power for generators. 
 
-\begin{figure}[b]
+\begin{figure}[]
 \centering
 \hspace{-25pt}\includegraphics[width=9 cm]{Graphics/Load_duration_curve.pdf}
 \caption{Load duration curve for pre- and post-COVID-19 actions.}\label{fig:load_duration}
