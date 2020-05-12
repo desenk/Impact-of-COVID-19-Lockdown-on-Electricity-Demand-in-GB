@@ -349,12 +349,14 @@ The aspects related to forecasting and grid stability are discussed in this sect
 \subsubsection{Load Forecast Error}\label{DemandForecastError}
 The effect of COVID-19 on the short-term load forecasts are analysed in the GB power system. In contrast to mid- and long-term forecast, which make predictions months and years prior to the event, the short-term load forecast have a shorter outlook which range from one hour to weeks before the settlement period \cite{SahayDayNetwork,Khuntia2016ForecastingReview}. Short-term load forecasting plays an important role in scheduling the power plants efficiently in electricity market, as it is essential for economic dispatch and unit commitment \cite{He2020Day-aheadForest}. As a result, an improved forecast accuracy leads to a more reliable and affordable power system \cite{SahayDayNetwork}. 
 
-Two different short-term load forecast are analysed in this study, the day-ahead total load forecast (DAF) and transmission system final load forecast (TSF). The DAF and TSF differ in methodology and forecast length. With regards to the methodology, the DAF represents a forecast for the total load in the power system, which equals the sum of generated power on both, transmission and distribution networks \cite{ENTSO-E2020ENTSO-EPlatform}. Whereas, TSF is a load forecast which is equal to the sum of generation present on the transmission network. However, this includes generation from pumped hydro storage and embedded large power plants on the distribution network level \cite{NationalGrid2020THE40}. Therefore, TSF is interpreted as the net demand while the DAF represents the actual total load in the power system.
+Two different short-term load forecast are analysed in this study, the day-ahead total load forecast (DAF) and transmission system final load forecast (TSF). The DAF and TSF differ in methodology and forecast length. With regards to the methodology, the DAF represents a forecast for the total load in the power system, which equals the sum of generated power on both, transmission and distribution networks \cite{ENTSO-E2020ENTSO-EPlatform}. Whereas, TSF is a load forecast which is equal to the sum of generation present on the transmission network. However, this includes generation from pumped hydro storage and embedded large power plants on the distribution network level \cite{NationalGrid2020THE40}. Therefore, TSF is interpreted as the net demand, usually published by the TSO for market clearing, while the DAF represents the estimated actual total load in the power system.
 %DKComment: Is it ok to say that TSF is required by TSOs and DAF is calculated for all loads present. I think we need to re-write the sentence above for clarity
-Regarding the forecast length, which is the duration from forecast publication till operation time, it varies for DAF and TSF, see Figure \ref{fig:forecast_length_explanation}. DAF is published only once a day and predicts the next-day average demand in each settlement period, hence, the forecast length vary from 12-36 hours \cite{ENTSO-E2020ENTSO-EPlatform}. Similarly, TSF outputs a day-ahead forecasts. However, forecasts for each settlement period is updated until the final TSF which predicts the next average demand in the next settlement period, 1 hour and 15 minutes ahead. \cite{ELEXON2020ELEXONBMRS}.
+%MPComment: Done
+Regarding the forecast length, which is the duration from forecast publication till operation time, it varies for DAF and TSF, see Figure \ref{fig:forecast_length_explanation}. DAF is published only once a day and predicts the next-day average demand in each settlement period, hence, the forecast length vary from 12-36 hours \cite{ENTSO-E2020ENTSO-EPlatform}. Similarly, TSF outputs a day-ahead forecasts. However, forecasts for each settlement period is updated until the final TSF which predicts the next average demand in the next settlement period, 1 hour and 15 minutes ahead \cite{ELEXON2020ELEXONBMRS}.
 
 
 %DKComment: Perhaps, it is better to change the source from ENTSOE to Elexon as we are using their data - right?
+%MPComment: I used for the actual total load the ENTSOE data. Which is equal to the Elexon data, hence they report to ENTSOE
 \begin{figure}[H]
 \centering
 \hspace{-25pt}
@@ -365,7 +367,7 @@ Regarding the forecast length, which is the duration from forecast publication t
 
 DAF and TSF forecast errors reveal different characteristics due to the lock-down. The DAF forecast is improved while the TSF forecast does not reflect clear changes. This is shown in Figure \ref{fig:DAFandTSFerror}. The forecast error is evaluated by one of the most common performance indicators, namely the mean absolute percentage error (MAPE) \cite{SahayDayNetwork, He2020Day-aheadForest}. MAPE functions well as a forecast performance indicator when employing historical data. Nevertheless, for prediction model selection and estimation it is biased \cite{Tofallis2015AEstimation}. As only historical data is analysed in this study, this makes MAPE a suitable indicator.
 %DKComment: interesting comment about MAPE, not sure if we need to mention the bias about MAPE as it doesn't affect us - it can stay in I guess.
-MAPE is defined as a summation of forecast errors, where each error is calculated based on the actual load. This is shown in Equation \ref{eq:MAPE} where $y$ represents.....$\hat{y}$ is the....$N$ is the number of
+MAPE is defined as a summation of forecast errors, where each error is weighted to the actual load. This is shown in Equation \ref{eq:MAPE} where $y$ represents the actual load, $\hat{y}$ is the load forecast and $N$ is the number of forecasts.
 
 %DKComment: Inserted an equation here to follow the journal's guidelines, commented out the text below. Could you please complete the sentence above just to make it clearer to the readers?
 
@@ -375,17 +377,17 @@ MAPE = \frac{1}{N} \sum_{i=1}^N \frac{y_{i,actual} - \hat{y}_{i,forecast}}{y_{i,
 
 % \[ MAPE(\%) = \frac{1}{N} \sum_{i=1}^N \frac{y_{i,actual} - \hat{y}_{i,forecast}}{y_{i,actual}} \]
 
-In general, the longer the forecast length is for the same time resolution, the higher the forecast error becomes \cite{NationalgridESO2018QuarterlyMarch18}. 
+In general, the longer the forecast length is for the same point in time, the higher the forecast error becomes \cite{NationalgridESO2018QuarterlyMarch18}. 
 %DKComment: I got confused by the same time resolution, do we mean for the same settlement period/time frame..i.e. same point in time?
-Therefore, the forecast error constitutes on higher average forecast errors for the DAF than TSF. With regards to the lock-down effects, the higher forecast accuracy for the DAF is especially remarkable when distilling the time frame on the weekdays from Wednesday to Friday which is time frame when the lock-down was initiated. The typical working week differs from the lock-down working week, and the weekend is more similar to the lock-down weekend. Hence, the effect of the lock-down would be overlooked if the analysed time frame was for the whole weak. On the contrary, no such effects are observed for TSF, which implies that the shorter-length forecast is less subjected to the lock-down effect. 
+%MPComment: Thanks
+Therefore, the DAF constitutes a higher forecast error than the TSF. With regards to the lock-down effects, the improved forecast accuracy for the DAF is especially remarkable when distilling the time frame on the weekdays from Wednesday to Friday, which is time frame when the lock-down was initiated. The typical working week differs from the lock-down working week, and the weekend is more similar to the lock-down weekend. Hence, the effect of the lock-down would be overlooked if the analysed time frame was for the whole weak. On the contrary, no such effects are observed for TSF, which implies that the shorter-length forecast is less subjected to the lock-down effect. 
 % This may be because the short-term forecasts were better informed about the lock-down decision and used the updated current demand and weather conditions to form better predictions.
 
 % DKComment: Have a look at the commented-out sentence above, is it worth including a speculation like this? - OK,I see that you do this below.
 
 The change in the forecast error cannot be solely traced back to the lock-down, since the forecast error is affected by many factors. In \cite{NationalgridESO2018QuarterlyMarch18}, a list of components affecting the forecast errors is given. 
 Nevertheless, in particular, the DAF analysis shows a change of magnitude that could indicate that the lock-down improved the day-ahead forecast.
-One reason could be the smoother, less variable demand profile which was recognised in section \ref{section: Effect on demand profile}. Even though the impact of the TSF change cannot be solely linked to lock-down due to minimal visible changes, in combination with the imbalance discoveries in section \ref{}, the short-length forecast accuracy decreased evidently.
-%DKComment: missing ref above.
+One reason could be the smoother, less variable demand profile which was recognised in Section \ref{section: Effect on demand profile}. Even though the impact of the TSF change cannot be solely linked to lock-down due to minimal visible changes, in combination with the imbalance discoveries in Section \ref{section:ImbalanceVolume}, the short-length forecast accuracy evidently decreased.
 
 
 %\begin{figure}[H]
