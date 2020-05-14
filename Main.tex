@@ -169,21 +169,62 @@ The outbreak of coronavirus disease 2019 (COVID-19) decoupled the electricity de
 %                           METHODS
 %===============================================================
  
-\section{Methodology}
+\section{Methodology\label{section:Methodology}}
+In order to analyse the impact of the COVID-19 lockdown on the electricity market, a systematic approach was used which involved creating an efficient pipeline to extract the target data, pre-process, analyse and visualise. In this section, this methodology used in the pipeline is explained. The instructions on how to use the pipeline created is detailed using a flow diagram. The actual Python code employed can be accessed at the Github repository\footnote{https://github.com/desenk/Electricity-Data-Pipeline}. Both .py and .ipynb formats are made available.
 
-\subsection{Data Clearing}
-Removing invalid/null values
+%What the code does%
+\subsection{Function of the Data Pipeline Code}
+The data pipeline imports the data using the application programming interface (API). This process is also commonly referred to as scraping the data. It performs the the following steps listed below. This pipeline was used for analysing the system frequency, demand, generation and other types of data and all results are presented in Section \ref{section:Results}.
 
-\subsection{Classification of demand profiles and comparison with historic data}
-Automated clustering using k-clusters model (machine learning)
-Correlating old and new demand data
+\begin{enumerate}
+    \item Import the data from the source webpage (e.g as XML
+    \item Identify the keywords
+    \item Create weekly data frames (according to the Monday-to-Sunday convention (i.e. ISO 8601))
+    \item Check for zero/invalid/duplicate data
+    \item Adjust the date and time format
+    \item Auto-conversion to CSV with title $DataLabel$\_Week\_starting\_$StartDate$.csv for archiving
+    \item Calcuation of statistical and other quantitative descriptors such as mean, peak-to-mean ratio, etc.
+    \item Comparative visualisation of the data
+\end{enumerate}
+
+%How can my code can be used for other projects%
+\subsection{Using the Data Pipeline for other research}
+In most of our analysis cases, the data source is Balancing Mechanism Reporting Service (BMRS) \cite{Elexon2019BMRSArchitecture}. The website \cite{ElectricityBMRS} provides open-source data that is used for the balancing and settling the GB electricity system.
+
+The data provided (e.g. system  demand, frequency, generation by fuel type, etc.) is used for reaching trading decisions and analysing the dynamics of market volumes and pricing. Hence, we believe that this pipeline may be useful for both academic and industrial researchers who are interested in electricity market dynamics, regulation, trading and forecasting.
+
+As shown in Figure \ref{fig:pipeline_flowchart}, there are 2 prior steps before reaching the results stage where the quantitative data descriptors are calculated and the results are visualised in a comparative manner. The first step is to obtain an API key ...
+
+\begin{figure}[H]
+\centering
+\hspace{-25pt}\includegraphics[trim={4cm 2.5cm 3cm 3cm}, clip, width=15 cm]{Graphics/Flowchart_pipeline.pdf}
+\caption{The flowchart displaying the steps for employing the data pipeline.}\label{fig:pipeline_flowchart}
+\end{figure}  
+
+
+
+% \begin{theorem}
+% \KwResult{Write here the result }
+%      initialization\;
+%      \While{While condition}{
+%       instructions\;
+%       \eIf{condition}{
+%       instructions1\;
+%       instructions2\;
+%       }{
+%       instructions3\;
+%       }
+%      }
+%      \caption{How to write algorithms}
+% \end{theorem}
+
 
 %===============================================================
 %                           RESULTS
 %===============================================================
 
-\section{Results}
-This section details the effect of the COVID-19 outbreak on the GB electricity system. Four categories were analysed: (1) demand profile, analysing the new shape and magnitudes, (2) generation portfolio, investigating VRE share and the impact on conventional generation portfolio, (3) load forecasting and grid stability indicators, and finally (4) market prices, including Day-Ahead wholesale market price, system imbalance price and agile price. In particular, the load forecast was analysed in different forecast lengths. Further, the grid stability subsection inspects imbalance volume, system frequency, loss of load probability and the de-rated margin. Wherever possible, the results are presented in a quantitative manner. However, as it is often questionable or leading to distorted conclusion, when comparing only single weeks with completely different weather conditions (i.e. solar radiation, wind speed and temperature), a qualitative approach was chosen to complement the results.
+\section{Results\label{section:Results}}
+This section details the effect of the COVID-19 outbreak on the GB electricity system. Four categories were analysed: (1) demand profile, analysing the new shape and magnitudes, (2) generation portfolio, investigating VRE share and the impact on conventional generation portfolio, (3) load forecasting and grid stability indicators, and finally (4) market prices, including Day-Ahead wholesale market price, system imbalance price and agile price. In particular, the load forecast was analysed in different forecast lengths. Further, the grid stability subsection inspects imbalance volume, system frequency and the loss of load probability. Wherever possible, the results are presented in a quantitative manner. However, as it is often questionable or leading to distorted conclusion, when comparing only single weeks with completely different weather conditions (i.e. solar radiation, wind speed and temperature), a qualitative approach was chosen to complement the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -347,7 +388,7 @@ As result, the total generation portfolio is likely to reduce carbon emissions b
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Forecasting and Grid Stability}
-The aspects related to forecasting and grid stability are discussed in this section. These include factors such as the deviations in system frequency, imbalance volume and load forecast error of the system operator. Additionally, it investigates the loss of load probability and the de-rated margin as indicators of the reserve scarcity and increased stress in the grid.
+The aspects related to forecasting and grid stability are discussed in this section. These include factors such as the deviations in system frequency, imbalance volume and load forecast error of the system operator. Additionally, it investigates the loss of load probability as indicators of the reserve scarcity and increased stress in the grid.
 
 \subsubsection{Load Forecast Error}\label{DemandForecastError}
 The effect of COVID-19 on the short-term load forecasts are analysed in the GB power system. In contrast to mid- and long-term forecast, which make predictions months and years prior to the event, the short-term load forecast have a shorter outlook which range from one hour to weeks before the settlement period \cite{SahayDayNetwork,Khuntia2016ForecastingReview}. Short-term load forecasting plays an important role in scheduling the power plants efficiently in electricity market, as it is essential for economic dispatch and unit commitment \cite{He2020Day-aheadForest}. As a result, an improved forecast accuracy leads to a more reliable and affordable power system \cite{SahayDayNetwork}. 
@@ -525,7 +566,7 @@ In section \ref{DemandForecastError}, it was recognised the short-length load fo
 \label{fig:ImbalanceVolume_over_2020}
 \end{figure} 
 
-The higher share of VRE seems to be the main driver for the increasing imbalance in the power system after the lock-down. In Figure \ref{fig:ImbalanceVolume-daily}, the imbalance volume was weighted to the actual total system demand for a pre- and post-COVID week. On the secondary axes is VRE share plotted. Remarkable is the correlation between weighted imbalance volume and the VRE share after the lock-down. The correlation might be not a permanent condition in future. When analysing data from January to March, a correlation between VRE share and imbalance volume was discovered roughly 20\% of the time, though, at approximately 80\% of the time there is no clear correlation visible. Nevertheless, a clear correlation between VRE share and imbalance volume is observed after the lock-down, which indicates that the increasing VRE share is the main driver for the higher imbalance volume. The reason for that cannot be precisely untangled as four things can cause a imbalance, generation and demand prediction errors, network constraints, and the balance need at every instance. 
+The higher share of VRE seems to be the main driver for the increasing imbalance in the power system after the lock-down. In Figure \ref{fig:ImbalanceVolume-daily}, the imbalance volume was weighted to the actual total system demand for a pre- and post-COVID week. On the secondary axes is VRE share plotted. Remarkable is the correlation between weighted imbalance volume and the VRE share after the lock-down. The correlation might be not a permanent condition in future. When analysing data from January to March, a correlation between VRE share and imbalance volume was discovered roughly 20\% of the time, though, at approximately 80\% of the time there is no clear correlation visible. Nevertheless, a clear correlation between VRE share and imbalance volume is observed after the lock-down, which indicates that the increasing VRE share is the main driver for the higher imbalance volume. The reason for that cannot be precisely untangled as four things can cause an imbalance: generation and demand prediction errors, network constraints, and the balance need at every instance. 
 
 \begin{figure}[H]
 \centering
@@ -533,7 +574,7 @@ The higher share of VRE seems to be the main driver for the increasing imbalance
 \caption{Daily average share of imbalance volume and share of VRE for one pre- and post-COVID week, 02-09 March and 22-28 March, respectively. All data available at \protect\cite{ELEXON2020ELEXONBMRS}.}\label{fig:ImbalanceVolume-daily}
 \end{figure} 
 
-The effect of higher VRE shares explains the slightly poorer performance of the short-length load forecast TSF, as embedded VRE, which consists of 13 GW solar and 6 GW wind capacity in 2018,  cause load forecast errors \cite{NationalgridESO2018QuarterlyMarch18, NationalGridESO2019EnergyRoadmap}. Contrary, the Day-Ahead load forecast improved, so there might be a trade-off between the benefit of smoother load-profiles and the bad influence of high VRE shares on forecast errors. As summary, it seems that depending on the forecast length, the COVID situation causes improved or worse load forecast performance, see Figure \ref{fig:Illustrative-forecast-summary}. Shorter load forecast-length drop in performance, while longer forecast-length increase in performance.
+The effect of higher VRE shares explains the slightly poorer performance of the short-length load forecast TSF, as embedded VRE, which consists of 13 GW solar and 6 GW wind capacity in 2018,  cause load forecast errors \cite{NationalgridESO2018QuarterlyMarch18, NationalGridESO2019EnergyRoadmap}. Contrary, the Day-Ahead load forecast improved, so there might be a trade-off between the benefit of smoother load-profiles and the bad influence of high VRE shares on forecast errors. In summary, it seems that depending on the forecast length, the COVID situation causes improved or worse load forecast performance, see Figure \ref{fig:Illustrative-forecast-summary}. Shorter load forecast-length drop in performance, while longer forecast-length increase in performance.
 
 \begin{figure}[H]
 \centering
@@ -542,7 +583,7 @@ The effect of higher VRE shares explains the slightly poorer performance of the 
 \end{figure} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\subsubsection{LOLP \& DRM}\label{section:LOLP_DRM}
+\subsubsection{LOLP}\label{section:LOLP_DRM}
 
 Loss of load probability (LOLP) is an indicator for system reliability measured by the system operator for each settlement period \cite{ELEXON2019GuidanceBritain}. For instance, when National Grid predicts higher probability of loss of load, the balancing mechanism is willing to pay higher prices for balancing at the time of reserve scarcity. The methodology to calculate the LOLP can be found in \cite{Elexon2019LossStatement}. The higher prices at high LOLP levels are also known as reserve scarcity prices, which are the product of LOLP and the value of lost load (VoLL). Whereby, the VoLL is determined through the assessment of how much value consumers on average attribute to the security of supply - currently set on £6000/MWh \cite{ELEXON2019GuidanceBritain}. 
 
@@ -592,7 +633,7 @@ For the purpose of energy balancing, the system operator might additionally purc
 
 The system-balancing actions, otherwise, are only a part of the non-BM actions \cite{Nationalgrid2018BalancingStatement}. They describe balancing actions which keep the energy balance at every instance. For example, a wind power plant might generate the exact energy amount as contracted by the physical notification for the 30 min settlement period, however, its power might fluctuate and mismatch the demand in the settlement period which make system-balancing actions, such as activation's of non-BM STOR units, necessary \cite{Nationalgrid2018BalancingStatement}. The pricing scheme for the system-balancing actions is equal to the energy-balancing scheme for non-BM actions, described in the previous paragraph.  
 
-Figure \ref{fig:imbalance-price-development}, illustrates the weekly averaged imbalance price development in 2020. The imbalance price dropped significantly in the first week of the lock-down, while increased in the following week significantly. As described in the above paragraphs, the imbalance price is a complex construct. As result, the impact of the lock-down on the imbalance price can just be qualitatively evaluated.
+Figure \ref{fig:imbalance-price-development}, illustrates the weekly averaged imbalance price development in 2020. The imbalance price dropped significantly in the first week of the lock-down, while increased in the following week significantly, hence, showing an unclear trend. As described in the above paragraphs, the imbalance price is a complex construct. Therefore, the impact of the lock-down on the imbalance price can just be qualitatively evaluated.
 
 \begin{figure}[H]
 \centering
@@ -602,14 +643,14 @@ Figure \ref{fig:imbalance-price-development}, illustrates the weekly averaged im
 \label{fig:imbalance-price-development}
 \end{figure} 
 
-The impacts of the lower demand at the lock-down times could both potentially increase and lower the imbalance price (see Fig. \ref{fig:imbalance-price-trade-off}). The balancing service options are generally chosen in a merit-order wise way, meaning activating cheap options first, if no system operation limitation exists. Therefore, similar to a the wholesale market price settling, a higher demand would lead to higher prices, vice versa, cheaper generation would lower the price. That the imbalance volume could increase was explored in section \ref{section:ImbalanceVolume}. Moreover, an on average lower demand as discovered in \ref{section: Effect on demand profile}, would potentially free up more generation units that can provide additional cost-effective balancing services. The described effects frame not the whole picture, additionally investigation could be made on the LoLP, the VoLL, the De-rated Margin, voltage related services and the network utilisation.
+The impacts of the lower demand at the lock-down times could potentially both increase and lower the imbalance price (see Fig. \ref{fig:imbalance-trade-off}). The balancing service options are generally chosen in a merit-order wise way, meaning activating cheap balancing options first, if no system operation limitation exists. Therefore, similar to a the wholesale market price settling, a higher demand would lead to higher prices and cheaper generators could lower the price or vice versa. That the imbalance volume could increase was explored in section \ref{section:ImbalanceVolume}, which imply a higher need for balancing services. Moreover, an on average lower demand as discovered in \ref{section: Effect on demand profile}, would potentially free up more generation units that can provide additional cost-effective balancing services. As result, the imbalance price could increase or decrease. The described effects frame not the whole picture, additionally investigation could be made on the LoLP, the VoLL, the de-rated margin, voltage related services and the network utilisation.
 
 \begin{figure}[H]
 \centering
 \hspace{-25pt}
 \includegraphics[trim={4cm 6.3cm 5cm 1cm},clip,width=1\textwidth]{Graphics/Imbalance-price-trade-off.pdf}
 \caption{The impact of lower demand on the imbalance price}
-\label{fig:imbalance-price-trade-off}
+\label{fig:imbalance-trade-off}
 \end{figure} 
 
 
@@ -623,7 +664,14 @@ The impacts of the lower demand at the lock-down times could both potentially in
 
 %There are two energy imbalance prices for each Settlement Period. These are:System Buy Price (SBP); and System Sell Price (SSP).However there is a single price calculation, so SBP will equal SSP in each Settlement Period. ELEXON apply these prices to Parties’ imbalances to determine their imbalance charges. A Party is out of balance when its contracted energy volume does not match its physical production orconsumption.
 
-\subsubsection{Agile Pricing}
+\subsubsection{Variable Pricing for Domestic Consumers}
+The case for variable pricing for domestic consumers was made by numerous studies \cite{REF!}. It is a more consumer-centric approach where the domestic consumers are billed using the same half-hourly prices as the commercial ones rather than having a fixed tariff (i.e. a volumetric calculation using a fixed £/kWh rate). There is also the commonly known time-of-use (TOU) pricing where the £/kWh rate varies for different times of the day which usually correlates to higher rates for higher demand periods. For instance, electricity prices from 4 to 7 pm woudl be higher to reflect the evening peak whereas from 1 am to 4 am when the demand is usually low, the prices would be lower. Hence, this method of pricing would also result in demand shifting.The case for variable pricing for domestic consumers was made by numerous studies \cite{REF!}. It is a more consumer-centric approach where the domestic consumers are billed using the same half-hourly prices as the commercial ones rather than having a fixed tariff (i.e. a volumetric calculation using a fixed £/kWh rate). There is also the commonly known time-of-use (TOU) pricing where the £/kWh rate varies for different times of the day which usually correlates to higher rates for higher demand periods. For instance, electricity prices from 4 to 7 pm woudl be higher to reflect the evening peak whereas from 1 am to 4 am when the demand is usually low, the prices would be lower. Hence, this method of pricing would also result in demand shifting.
+
+
+
+
+
+
 A British energy supplier called Octopus \cite{AgileEnergy} introduced their "Agile" electricity tariff in which is an indexed half-hourly dynamic pricing that tracks the wholesale price of electricity (i.e. the domestic rate paid changes every 30 minutes instead of a fixed monthly rate). On different occasions, this has resulted in negative pricing (i.e. the energy supplier paid its customers use electricity). However, this also means that there is usually a steep price from 4pm to 7pm during the evening consumption peak. The following logic in Eq. \ref{eq:Octopus}, is used to determine the prime time pricing. It uses the of the distribution cost coefficient ($\tau$) multiplied by the wholesale cost of electricity ($W$) and $P$ which is the peak-time premium (which is equal to 12p/kWh during prime time). Then it caps the price to £35p/kWh if the previous outcome is higher than this value. This is because on average the fixed tariff are in the range of 15-20p/kWh and it could be argued exposing domestic consumers to extreme fluctuations in the system would be unfair.
 
 \begin{equation}\label{eq:Octopus}
@@ -668,23 +716,91 @@ Overall (p/kWh) & -1.44			& -0.02         & -4.85 &09-12-2019\\
 %===============================================================
 
 \section{Discussion}
+%%%%%%%%%%%%%%%%%%%%%%%%
+%Dos
+   % Summarise the key findings
+   % Interpretations: what do the results mean?
+   % Implications: why do the results matter?
+   % Limitations: what can’t the results tell us?
+   % Recommendations: what practical actions or scientific studies should follow?
+%Don'ts
+   %Don’t introduce new results
+   %Don’t make inflated claims
+   %Don’t undermine your research
+ %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%  
 
-\textcolor{blue}{
-NOTES from initial observations: Every day is a "weekend" -> Lower and delayed morning peak, lower evening peak - generally lower consumption.
-\begin{itemize}
-    \item System operator - Harder to predict the demand profile and peak - challenges the forecasting/predictive algorithms employed by National Grid
-    \subitem Did the machine learning algorithms/predictive control/etc. see this coming?
-    \item Aggregators and agents in DSR - may be making profit- due to these unforeseen changes in demand profile
-    \item Generators - changes in scheduling - also not selling as much as they were promised as the demand decreased
-    \item Industrial and Domestic consumers - paying less? - fixed term contracts?
-    \item the impact of a shift from commercial and industrial load to largely domestic load
-\end{itemize}}
+The IEA estimates, we are looking now one decade into the future power system, when the share of VRE, such from solar and wind, is much higher and where balancing services are more demanded \cite{IgorTodorovic2020Birol:Balance}. The results in this paper summarised in Table \ref{table:Summary key results} indicate that the grid is still reliable and stable but stressed, and that the wholesale market price could drop. Indeed, we are experience due to COVID larger shares of VRE in the electricity system which requires more balancing services as the mismatch between supply and demand increased on average. But are we looking really into the future power system? 
 
-\textcolor{blue}{
-\begin{itemize}
-    \item Due to the lower load caused by the lock-down, the average share of VRE increases in the power system. (important for discussion, as generally with higher VRE shares, i) prediction errors increase, ii) more ancillary services, iii) and the DA-clearance price decrease [already recognized from data])
-\end{itemize}
-}
+Several indicators suggest that the current situation in GB cannot be compared with the future high renewable power system. First, the lock-down changed the load profile shape which make it smoother than in typically future scenarios. These smoother demand profile, counter-intuitively, lead to better day-ahead load forecast even though the share of VRE increased. Second, the current power system is backed by inflexible nuclear and coal plants which might change in future due to the growing amount of flexibility services such as DSR, aggregated generators and storages. Lastly, the network is at the moment comparatively oversized due to the lower load. The same network at higher VRE share could lead to more network congestion in a future power system.
+
+Nevertheless, the inconvenient COVID situation could imply two future important points: The imbalance could increase, stressing the grid stability if the TSO is not prepared; and that network constraints might block smooth operation. Both points can be a more severe problem in the future power system which should be anticipated by system operators. 
+ 
+%MPComment: Think a table is nice, however, a word table would look more appealing
+\begin{table}[H]
+\caption{Summarised key results.
+}\label{table:Summary key results}
+\centering
+%% \tablesize{} %% You can specify the fontsize here, e.g., \tablesize{\footnotesize}. If commented out \small will be used.
+\begin{tabular}{cc}
+\toprule
+\textbf{Type} & \textbf{Result}	\\
+\midrule
+
+\multirow{2}{10em}{Demand}
+& - Lower demand profile \\ 
+& - Smoother load profile\\\\
+
+\multirow{3}{10em}{Generation} 
+& - Higher VRE share \\ 
+& - Less operation of conventional plants \\ 
+& - Inflexbile plants more likely pushed out of market \\\\
+
+\multirow{2}{10em}{Load Forecast} 
+& - Day-Ahead forecast more accurate due to smoother load profile \\
+& - Hourly forecast slightly drops in accuracy  \\\\
+
+\multirow{6}{10em}{Grid stability indicators} 
+& - Frequency stable, but more prone to rapid changes since less inertia on grid \\
+& - Higher loss of load probability (LoLP)\\
+& - Demand and supply mismatch (imbalance volume) \\
+& increases due to higher VRE share as significant 
+driver \\ 
+& - Network load lower on average but some areas \\
+& with higher VRE share could reveal higher loads\\\\ 
+
+
+\multirow{2}{10em}{Market prices} 
+& - Wholesale market price, lower due to VRE impact on merit-order \\ 
+& - Impact on system imbalance prices, unclear as \\
+&price components are positive and negative effected \\ 
+& - Agile prices, ???\\\\ 
+
+
+
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+
+%%%%%%%Comments below%%%%%%%%%%%%
+
+%\textcolor{blue}{
+%NOTES from initial observations: Every day is a "weekend" -> Lower and delayed morning peak, lower evening peak - generally lower consumption.
+%\begin{itemize}
+%    \item System operator - Harder to predict the demand profile and peak - challenges the forecasting/predictive algorithms employed by National Grid
+%    \subitem Did the machine learning algorithms/predictive control/etc. see this coming?
+%    \item Aggregators and agents in DSR - may be making profit- due to these unforeseen changes in demand profile
+ %   \item Generators - changes in scheduling - also not selling as much as they were promised as the demand decreased
+%    \item Industrial and Domestic consumers - paying less? - fixed term contracts?
+%    \item the impact of a shift from commercial and industrial load to largely domestic load
+%\end{itemize}}
+
+%\textcolor{blue}{
+%\begin{itemize}
+%    \item Due to the lower load caused by the lock-down, the average share of VRE increases in the power system. (important for discussion, as generally with higher VRE shares, i) prediction errors increase, ii) more ancillary services, iii) and the DA-clearance price decrease [already recognized from data])
+%\end{itemize}
+%}
 
 \textcolor{blue}{
 \begin{itemize}
@@ -696,11 +812,11 @@ NOTES from initial observations: Every day is a "weekend" -> Lower and delayed m
 
 The new disruptive and lower demand profile lead to multiple effects on stakeholders in the electricity system for network operators, supplier and generators, aggregators and DSR-provider, and consumers. 
 
-The network operators will see on average lower network loads, occasionally higher network loads, and increasing activation of balancing services. First, higher amount of balancing services can be explained due to the observed performance drop in short-term forecasting (see Section \ref{DemandForecastError}) and the resulting higher volume of imbalances (see Section \ref{section:ImbalanceVolume}). To guarantee a reliable and stable grid, balancing services will be more often activated. Second, the average lower network loads are expected due to the lower average load at lock down times. Although, at some, particular high VRE locations, a higher network load might prevail because of new power flows (see Section \ref{section: network constraints}).
+The network operators will see on average lower network loads, occasionally higher network loads, and increasing activation of balancing services. First, higher amount of balancing services can be explained due to the observed performance drop in short-term forecasting (see Section \ref{DemandForecastError}) and the resulting higher volume of imbalances (see Section \ref{section:ImbalanceVolume}). To guarantee a reliable and stable grid, balancing services will be more often activated. Second, lower network loads are expected due to the lower average load at lock down times. Although, at some, particular high VRE locations, the network load might increase because of new power flows (see Section \ref{section: network constraints}).
 
-In the wholesale market, customer (Supplier) enter contracts with producer (Generators) which form together a Balancing and Settlement Code party \cite{ELEXON2019GuidanceBritain}. Since the imbalance due to rising load uncertainty increases, these parties are more often faced to imbalance charges towards the system operator. The trend of the total amount of imbalance charges cannot be easily detected, as described in Section \ref{sec:system imbalance price}, imbalance pricing is a complex measure which can increase and decrease due to the lock-down effects. 
+In the wholesale market, customers (Suppliers) enter contracts with producers (Generators) which form together a Balancing and Settlement Code party \cite{ELEXON2019GuidanceBritain}. Since the imbalance due to rising load uncertainty and the load profile increases, these parties are more often faced to imbalance charges towards the system operator. The trend of the total amount of imbalance charges cannot be easily detected, as described in Section \ref{sec:system imbalance price}. The imbalance price is a complex measure which can increase and decrease due to the lock-down effects. 
 
-Beside the imbalance, generators and suppliers, will suffer from the disruptive demand change in terms of profitability. The share of fix-cost compared to amount of sales will increase, leading eventually to higher electricity prices for domestic and industrial consumers. Otherwise, energy intensive companies which can directly participate on the electricity market can benefit from lower wholesale electricity prices (see Section \ref{sec:day-ahead wholesale market price}).
+Beside the imbalance, generators and suppliers, will suffer from the disruptive demand change in terms of profitability. The share of fix-cost compared to amount of sales will increase, leading eventually to higher electricity prices for domestic and industrial consumers. Contrary, supplier benefit from lower wholesale market prices, however, if this cost are transferred to the consumer is not guaranteed (see Section \ref{sec:day-ahead wholesale market price}).
 
 Aggregators and Demand side response (DSR) providers are expected to be more often scheduled because of the larger imbalance volume observed after the lock-down. The only requirement for them is to be more competitive then the new entering flexibility's from the non-scheduled power plants. If so, aggregators and DSR providers will benefit from the COVID-19 crisis.
 
@@ -730,25 +846,23 @@ Aggregators and Demand side response (DSR) providers are expected to be more oft
 & Some network sections with higher loadings \\\\ 
 
 \multirow{5}{10em}{Supplier and Generators} 
+& Lower wholesale market price \\
 & More often imbalance charges \\ 
 & Higher total imbalance volume \\ 
 & Total cost of imbalance charges unclear \\
 & \textit{(single multiple positive and negative imbalance price effects)} \\ 
-& Cost per kWh increases \\\\
+& Fix cost per generated or supplied kWh increases \\\\
 
-\multirow{1}{10em}{Aggregator and DSR provider} 
+\multirow{3}{10em}{Aggregator and DSR provider} 
 & Benefit, if scheduled more often \\ \\
 
-\multirow{1}{10em}{Industrial consumers} 
-& Higher? electricity prices \\\\ 
+\multirow{1}{10em}{Domestic and Industrial consumer} 
+& Fixed pricing. Electricity price impact vague,\\ & since lower wholesale market prices might not be transferred by supplier \\\\ 
 
 
-\multirow{2}{10em}{Domestic consumers} 
-& Fixed \\ 
-& Variable pricing \\\\ 
+\multirow{2}{10em}{Domestic and Industrial consumer} 
+& Variable pricing. ... \\\\ 
 
-\multirow{1}{15em}{Energy intensive industry} 
-& Lower electricity prices \\\\ 
 
 
 \bottomrule
@@ -953,39 +1067,9 @@ The appendix is an optional section that can contain details and data supplement
 % %\end{listing}
 
 
-% \subsection{Formatting of Mathematical Components}
-
-% This is an example of an equation:
-
-% \begin{equation}
-% a + b = c
-% \end{equation}
-% %% If the documentclass option "submit" is chosen, please insert a blank line before and after any math environment (equation and eqnarray environments). This ensures correct linenumbering. The blank line should be removed when the documentclass option is changed to "accept" because the text following an equation should not be a new paragraph. 
-
-% Please punctuate equations as regular text. Theorem-type environments (including propositions, lemmas, corollaries etc.) can be formatted as follows:
-% %% Example of a theorem:
-% \begin{Theorem}
-% Example text of a theorem.
-% \end{Theorem}
-
-% The text continues here. Proofs must be formatted as follows:
-
-% %% Example of a proof:
-% \begin{proof}[Proof of Theorem 1]
-% Text of the proof. Note that the phrase `of Theorem 1' is optional if it is clear which theorem is being referred to.
-% \end{proof}
-% The text continues here.
 
 % %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 % \section{Discussion}
 
 % Authors should discuss the results and how they can be interpreted in perspective of previous studies and of the working hypotheses. The findings and their implications should be discussed in the broadest context possible. Future research directions may also be highlighted.
 
-% %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-% \section{Materials and Methods}
-
-% Materials and Methods should be described with sufficient details to allow others to replicate and build on published results. Please note that publication of your manuscript implicates that you must make all materials, data, computer code, and protocols associated with the publication available to readers. Please disclose at the submission stage any restrictions on the availability of materials or information. New methods and protocols should be described in detail while well-established methods can be briefly described and appropriately cited.
-
-% Research manuscripts reporting large datasets that are deposited in a publicly available database should specify where the data have been deposited and provide the relevant accession numbers. If the accession numbers have not yet been obtained at the time of submission, please state that they will be provided during review. They must be provided prior to publication.
-
-% Interventionary studies involving animals or humans, and other studies require ethical approval must list the authority that provided approval and the corresponding ethical approval code. 
