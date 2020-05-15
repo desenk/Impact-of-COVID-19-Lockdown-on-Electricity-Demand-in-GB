@@ -5,8 +5,12 @@
 \documentclass[energies,article,submit,moreauthors,pdftex]{Definitions/mdpi} 
 
 \usepackage{graphicx}
-\usepackage{subfig}
+% \usepackage{subfig}
 \usepackage{subcaption}
+\usepackage{algorithm2e}
+\usepackage{listings}
+
+% \usepackage{}
 % If you would like to post an early version of this manuscript as a preprint, you may use preprint as the journal and change 'submit' to 'accept'. The document class line would be, e.g., \documentclass[preprints,article,accept,moreauthors,pdftex]{mdpi}. This is especially recommended for submission to arXiv, where line numbers should be removed before posting. For preprints.org, the editorial staff will make this change immediately prior to posting.
 
 
@@ -109,7 +113,7 @@ The outbreak of SARS-COV-2 disease 2019 (COVID-19) abruptly changed the patterns
 %===============================================================
 
 \begin{document}
-\tableofcontents
+% \tableofcontents
 %===============================================================
 %                           INTRO
 %===============================================================
@@ -150,56 +154,92 @@ The outbreak of SARS-COV-2 disease 2019 (COVID-19) abruptly changed the patterns
 % \url{https://www.elexon.co.uk/article/coronavirus-temporary-derogations-to-improve-settlement-accuracy/}
 
 \section{Introduction}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% 1. Provide background information and set the context.
+% 2. Introduce the specific topic of your research and explain why it is important.
+% 3. Mention past attempts to solve the research problem or to answer the research question.
+% 4. Conclude the Introduction by mentioning the specific objectives of your research.
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% No.1
+The outbreak of coronavirus disease 2019 (COVID-19) lead in UK on 23rd of March to a lockdown. Prime Minister Boris Johnson addressed on this day to the nation that Britons should only go outside to buy food, to exercise, or to go to work if home office was not possible. Citizens would face police fines for failing the new measures \cite{BritishForeignPolicyGroup2020COVID-19Timeline}. 
+% No.2
+These drastic measures lead to disruptive change in the demand and influenced the wider energy sector. The analysis of this high impact and low probability event is important, as with the insights one could possibly anticipate any adverse effects on the electricity sector in future pandemic situations. 
+% No.3
+%Small literature study of attempts to analyse the impacts on the electricity sector.(Share love, mention many papers and summarise how our work extend previous work)
+% No.4
+As result this study seeks to quantify the changes in demand, generation, grid stability and market prices.
 
 % Electricity is a vital service at all times. In the UK, the utilities sector was identified as critical for the continuation of essential public services by the government. As it is essential to meet the heat and lighting demand for 
 % homes, businesses to function and for the NHS to care for the sick.
 
-The outbreak of coronavirus disease 2019 (COVID-19) decoupled the electricity demand from its fundamental prediction elements which are namely the weather conditions and periodicity or time. In other words, the electricity demand forecasting methods mainly rely on the correlation with weather data (temperature in specific) and recurrence or periodical habits (e.g. evening demand peak after 5pm or expected increase on the Christmas Eve). [!ref]
+%The outbreak of coronavirus disease 2019 (COVID-19) decoupled the electricity demand from its fundamental prediction elements which are namely the weather conditions and periodicity or time. In other words, the electricity demand forecasting methods mainly rely on the correlation with weather data (temperature in specific) and recurrence or periodical habits (e.g. evening demand peak after 5pm or expected increase on the Christmas Eve). [!ref]
 
-...
+%...
 
-
- In response to the increase in the number of COVID-19 cases, the UK government announced new rules that included lockdown, closure of businesses and remote working to mitigate the spread of the coronavirus on 23rd March 2020. The massive shift to home and remote working and closure of office spaces, schools, factories and similar resulted in a different electricity consumption profile.
-
+ %In response to the increase in the number of COVID-19 cases, the UK government announced new rules that included lockdown, closure of businesses and remote working to mitigate the spread of the coronavirus on 23rd March 2020. The massive shift to home and remote working and closure of office spaces, schools, factories and similar resulted in a different electricity consumption profile.
 
 
-% These include social distancing measures, requiring people to stay at home, and immediate self-isolation for 1.5 million Britons most at risk of needing hospital treatment.
-%A novel measure that resulted in spatio-temporal events in which electricity demand from the grid decouples from its primary dependent factors, time (periodicity) and weather. The decoupling events are aligned (in space and time) with news media event data recorded in the Global Database of Events, Language, and Tone (GDELT), in an attempt to gain insight about significant events that influence power consumption in the US.
+
+
 %===============================================================
 %                           METHODS
 %===============================================================
- 
+ %CHANGED
 \section{Methodology\label{section:Methodology}}
-In order to analyse the impact of the COVID-19 lockdown on the electricity market, a systematic approach was used which involved creating an efficient pipeline to extract the target data, pre-process, analyse and visualise. In this section, this methodology used in the pipeline is explained. The instructions on how to use the pipeline created is detailed using a flow diagram. The actual Python code employed can be accessed at the Github repository\footnote{https://github.com/desenk/Electricity-Data-Pipeline}. Both .py and .ipynb formats are made available.
+In order to analyse the impact of the COVID-19 lockdown on the electricity market, a systematic approach is used which involved creating an efficient pipeline to extract the target data, pre-process, analyse and visualise. In this section, the methodology used in the pipeline is explained. The instructions for future use are detailed using a flow diagram. The actual Python code employed can be accessed at the GitHub repository\footnote{https://github.com/desenk/Electricity-Data-Pipeline} \cite{KirliElectricityPipeline} and in Appendix \ref{section:PipelineCode}. Both .py and .ipynb formats are made available on \cite{KirliElectricityPipeline}.
 
 %What the code does%
 \subsection{Function of the Data Pipeline Code}
-The data pipeline imports the data using the application programming interface (API). This process is also commonly referred to as scraping the data. It performs the the following steps listed below. This pipeline was used for analysing the system frequency, demand, generation and other types of data and all results are presented in Section \ref{section:Results}.
+As this study involves a comparative analysis, various actions, such as cleaning the data and calculating the percentage differences, had to be repeated for different data sets like frequency and demand. In order to minimise the time spent from the import of the data to the analysis and visualisation stages, a data pipeline on Python is programmed to fetch the data directly using the application programming interface (API) of the provider - see \cite{KirliElectricityPipeline} and Appendix \ref{section:PipelineCode}. This process is also commonly referred to as scripting, extracting and scraping the data. This pipeline is used for analysing the system frequency, demand, generation and other types of data and all results are presented in Section \ref{section:Results}.  It performs the following steps listed below. 
 
+
+% \begin{enumerate}
+%     \item Import the data from the source webpage using the API user key
+%     \item Identify the keywords and group the data
+%     \item Create weekly data frames (according to the Monday-to-Sunday convention (i.e. ISO 8601))
+%     \item Check for zeros ,invalid or duplicate data
+%     \item Label and discard the columns that are not of interest
+%     \item Adjust the date and time format (e.g. change from half-hourly settlement period convention (where 01:00 is denoted by 2) to time)
+%     \item Save the adjusted data in CSV format with an automated title  (\texttt{$DataLabel$\_Week\_starting\_$StartDate$.csv})
+%     \item Calculation of statistical and other quantitative descriptors such as mean, peak-to-mean ratio, etc.
+%     \item Comparative visualisation of the data
+% \end{enumerate}
+
+
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwResult{Extraction, pre-processing, analysis and visualisation of the GB electricity data}
 \begin{enumerate}
-    \item Import the data from the source webpage (e.g as XML
-    \item Identify the keywords
+    \item Import the data from the source webpage using the API user key
+    \item Identify the keywords and group the data
     \item Create weekly data frames (according to the Monday-to-Sunday convention (i.e. ISO 8601))
-    \item Check for zero/invalid/duplicate data
-    \item Adjust the date and time format
-    \item Auto-conversion to CSV with title $DataLabel$\_Week\_starting\_$StartDate$.csv for archiving
-    \item Calcuation of statistical and other quantitative descriptors such as mean, peak-to-mean ratio, etc.
+    \item Check for zeros, invalid or duplicate data
+    \item Label the columns and discard any that are not of interest
+    \item Adjust the date and time format (e.g. change from half-hourly settlement period convention (where 01:00 is denoted by 2) to time)
+    \item Save the pre-processed data in the CSV format with an automated title  (\texttt{$DataLabel$\_Week\_starting\_$StartDate$.csv})
+    \item Calculation of statistical and other quantitative descriptors such as mean, peak-to-mean ratio, etc.
     \item Comparative visualisation of the data
 \end{enumerate}
+ 
+ \caption{The Electricity Data Pipeline}
+\end{algorithm}
 
 %How can my code can be used for other projects%
 \subsection{Using the Data Pipeline for other research}
-In most of our analysis cases, the data source is Balancing Mechanism Reporting Service (BMRS) \cite{Elexon2019BMRSArchitecture}. The website \cite{ElectricityBMRS} provides open-source data that is used for the balancing and settling the GB electricity system.
+In most of our analysis cases, the data source is the Balancing Mechanism Reporting Service (BMRS) \cite{Elexon2019BMRSArchitecture}. The website \cite{ElectricityBMRS} provides open-source data that is used for the balancing and settling the GB electricity system.
 
-The data provided (e.g. system  demand, frequency, generation by fuel type, etc.) is used for reaching trading decisions and analysing the dynamics of market volumes and pricing. Hence, we believe that this pipeline may be useful for both academic and industrial researchers who are interested in electricity market dynamics, regulation, trading and forecasting.
+The data provided (e.g. system  demand, frequency, generation by fuel type, etc.) is used for reaching trading decisions and analysing the dynamics of market volumes and pricing. Hence, we believe that this pipeline may be useful for both academic and industrial researchers who are interested in electricity market dynamics, regulation, trading and forecasting as it enables easy data extraction, pre-processing and visualisation. The flowchart in Figure \ref{fig:pipeline_flowchart}, displays the steps required to replicate the results.
 
-As shown in Figure \ref{fig:pipeline_flowchart}, there are 2 prior steps before reaching the results stage where the quantitative data descriptors are calculated and the results are visualised in a comparative manner. The first step is to obtain an API key ...
 
 \begin{figure}[H]
 \centering
 \hspace{-25pt}\includegraphics[trim={4cm 2.5cm 3cm 3cm}, clip, width=15 cm]{Graphics/Flowchart_pipeline.pdf}
 \caption{The flowchart displaying the steps for employing the data pipeline.}\label{fig:pipeline_flowchart}
 \end{figure}  
+
+As shown in Figure \ref{fig:pipeline_flowchart}, there are 2 prior steps to reaching the results stage where the quantitative data descriptors are calculated and the results are visualised in a comparative manner. The first step is to obtain an API key by registering on the Elexon website \cite{ElectricityBMRS} - a more detail guidance on this is provided by Elexon \cite{Elexon2019BMRSArchitecture}. Then, the pipeline can be accessed from the GitHub website \cite{KirliElectricityPipeline} or Appendix \ref{section:PipelineCode} and the API key obtained by the user should be input. The default time frames are set to the pre and post-COVID-19 weeks used for this analysis which are weeks commencing on 2\textsuperscript{nd} and 23\textsuperscript{rd} of March 2020. However, these can be adjusted to the time frame of interest. In addition to the system demand, this pipeline can be used for all other data types provided by Elexon which are listed in \cite{Elexon2019BMRSArchitecture}. The code can also be modified to refer to any other website to execute a direct data extraction using API.
+
+
 
 
 
@@ -223,15 +263,17 @@ As shown in Figure \ref{fig:pipeline_flowchart}, there are 2 prior steps before 
 %                           RESULTS
 %===============================================================
 
-\section{Results\label{section:Results}}
-This section details the effect of the COVID-19 outbreak on the GB electricity system. Four categories were analysed: (1) demand profile, analysing the new shape and magnitudes, (2) generation portfolio, investigating VRE share and the impact on conventional generation portfolio, (3) load forecasting and grid stability indicators, and finally (4) market prices, including Day-Ahead wholesale market price, system imbalance price and agile price. In particular, the load forecast was analysed in different forecast lengths. Further, the grid stability subsection inspects imbalance volume, system frequency and the loss of load probability. Wherever possible, the results are presented in a quantitative manner. However, as it is often questionable or leading to distorted conclusion, when comparing only single weeks with completely different weather conditions (i.e. solar radiation, wind speed and temperature), a qualitative approach was chosen to complement the results.
+\section{Results \label{section:Results}}
+In order to effectively present the impact of the COVID-19 lockdown on the GB electricity system, four main categories are identified and analysed: (1) the changes in demand profile and volume, (2) generation portfolio; renewable and conventional generation shares, (3) forecasting and grid stability indicators, and lastly (4) market prices, including day-ahead wholesale market, system imbalance and variable prices for the distributed consumers. Furthermore, the grid stability subsection inspects imbalance volume, system frequency and the loss of load probability. 
+
+% Wherever possible, the results are presented in a quantitative manner. However, as it is often questionable or leading to distorted conclusion, when comparing only single weeks with completely different weather conditions (i.e. solar radiation, wind speed and temperature), a qualitative approach was chosen to complement the results.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Demand Profiles}\label{section: Effect on demand profile}
 
-This section analyse and quantify the changes in the electricity consumption caused by the COVID-19 mitigation actions. The government recommended on Wednesday 23rd of May, to work from home and closed public spaces such as pubs, restaurants and sport facilities. The impact on the electricity demand is shown by the purple profile in Figure \ref{fig:demand_profiles} \cite{GovernmentGOV.UK}. The plot illustrate that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) shut down.
-Beside the demand reduction, the lock-down influenced the consumption pattern which results in a changed load profile shape. 
+This subsection analyses and quantifies the changes in the electricity consumption caused by the COVID-19 mitigation actions such as the lockdown. On the 23rd of May, the UK Government recommended work from home (WFH) and closed public spaces such as pubs, restaurants and sport facilities \cite{GovernmentGOV.UK}. The impact on the electricity demand is shown by the purple profile and compared to a pre-COVID-19 week in Figure \ref{fig:demand_profiles}. The figure illustrates that the overall demand decreased as majority of the commercial users (e.g. factories, businesses, etc.) shut down.
+Besides the demand reduction, the lock-down also influenced the consumption pattern which results in a changed load profile shape.
 %Old alternative: Nevertheless, this increased the influence of the domestic consumption pattern that resulted not only in a decreased electricity consumption but also a changed profile shape.
 
 \begin{figure}[H]
@@ -240,22 +282,12 @@ Beside the demand reduction, the lock-down influenced the consumption pattern wh
 \caption{Aggregated system demand before and after the COVID-19 actions}\label{fig:demand_profiles}
 \end{figure}  
 
-Figure \ref{fig:Demand_hist}, shows the demand histogram shifted to the left, indicating lower loads. The lighter colour (i.e.mostly yellow) peak for the post-action demand show that the range of most occurring demand values is now narrower, meaning there is less variation. Otherwise, the pre-action demand shows a more disperse and even occurrence profile which looks slightly bi-modal. The bi-modality, meaning that two occurrence centres exist, can be related to work-hours and non work-hours. While during non-work hours the profile is levelled on the base load and work-hours show another load centre. In conclusion, the effects taken after the COVID-19 actions denoting a higher occurrence of lower demands which results in a smoother load profile.
-
-%General Note: For creating a predictive model, perhaps this would be divided into two groups
-
-\begin{figure}[H] 
-\centering
-\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Demand_hist_coloured_sidebyside.pdf}
-\caption{Comparison of pre- and post-COVID-19 demand histograms with normalised occurrences. The range of colours from yellow to dark blue correspond to the highest and lowest values.}\label{fig:Demand_hist}
-\end{figure}  
-
-Load duration curves are used in power engineering to visualise the base and peak load and how often certain power demands occur between them. In Figure \ref{fig:load_duration}, the load duration curves are plotted for the pre and post action case. The visual changes are determined in Table \ref{table:load-duration}. While the base load only drops slightly by -9.50\%, the peak load drops much further by -20.31\%. However, the mean load drops the most, namely by -24.08\%, showing that the most load reductions happening between peak and baseload and smoothing the load profile.  
+As displayed in Figure \ref{fig:load_duration}, load duration curves show the base and peak demand by visualising the relationship between sorted demand (i.e. ranked descending) and exceedence. Whilst the base demand decreases 10\%, the peak and mean demand drastically drop by 20\% and 24\% respectively, following the start of the lockdown. The changes in the demand profile for peak, mean and base load are shown in Table \ref{table:load-duration}. The decrease in the energy demand can also be observed as the area of the red plot (i.e. post-COVID-19) is smaller than the blue plot (i.e. post-COVID-19). If the demand constant that would result in a flat load duration curve. In Figure \ref{fig:load_duration}, the post-lockdown plot (in red) is flatter than the previous one. This is also supported by the higher decrease in peak values in comparison to the base. This indicates a significant change in the emand profile and that it is flatter than the pre-action one. Flattening the demand curve means the prime time peaks such as the morning pick-up and the evening demand surge are now less pronounced. Such peaks increase the difficulty of matching demand and supply, puts the grid under stress and also increases the stress on thermal generation and storage to meet the demand. The ripple effects include congestion and high imbalance and transmission charges. 
 %General Note: visualise the relationship between sorted demand (i.e. ranked descending) and time. %It is used to analyse the variation in energy (i.e in Figure \ref{fig:load_duration}, the area of the graph gives the energy used in MWh) and choose baseload and peak load power for generators. 
 
-\begin{figure}[]
+\begin{figure}[H]
 \centering
-\hspace{-25pt}\includegraphics[width=9 cm]{Graphics/Load_duration_curve.pdf}
+\hspace{-25pt}\includegraphics[width=13 cm]{Graphics/Load_duration_curve.pdf}
 \caption{Load duration curve for pre- and post-COVID-19 actions.}\label{fig:load_duration}
 \end{figure}  
 
@@ -275,57 +307,57 @@ Post & 38585 & \textcolor{red}{-20.31\%} & 27294 & \textcolor{red}{-24.08\%} & 2
 \label{table:load-duration}
 \end{table}
 
-%\textcolor{purple}{
-%\textbf{Quick Results so far}
-%\begin{itemize}
-%    \item 20.31\% decrease in Peak Demand
-%    \item 24.08\% decrease in Mean Demand
-%    \item Only 10\% decrease in Base Load
-%    \item 1 hour shift in "morning peak" - 9 am to 8 am and "evening peak" - 6 pm to 7 pm
-%    \item Steeper climb to the "evening peak" - used to be 7500 MW increase over 4 hours, now it is 9500 MW increase in 5 hours.
-%    \item Overall decrease in Peak-to-Mean ratio -except  7, 8, 9 am. However, it seems to follow the same morning trend as the pre data which had its max PtM value at 6 am at 0.18. This peak is delayed to 8 am and decreased by 1. 
-%    \item Speculation: People wake up later, eat dinner earlier :)
-%    \item Standard deviation is smaller by a third of its original value (i.e. 6085). Presumably, this could explain the better performance of forecasting algorithms.
-%\end{itemize}
-%}
-
-%Figure \ref{fig: PtM_Ratio_Demand_comp} and \ref{fig: PtM_Ratio_Demand} uses the peak-to-mean ratio ($max/mean$) in order to quantify the variation in the consumption profile. 
 
 
-%\begin{figure}[H]
-%\centering
-%\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/VarCoeff_comp.pdf}
-%\caption{Comparison of peak-to-mean ratio to visualise the variation in system demand.}\label{fig: PtM_Ratio_Demand_comp}
-%\end{figure}  
-
-%\begin{figure}[H]
-%\centering
-%\hspace{-25pt}\includegraphics[width=7 %cm]{Graphics/PtM_ratio_Demand.pdf}
-%\caption{Overlaying the peak-to-mean ratios to compare the variation in system demand.}\label{fig: PtM_Ratio_Demand}
-%\end{figure}
 
 
-%\begin{figure}[H]
-%\centering
-%\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Mean_Demand_Profile_hist.pdf}
-%\caption{}
-%\end{figure}  
 
-%\textcolor{blue}{
-%\begin{itemize}
-%    \item Coefficient of variation (=standard deviation/mean)
-%    \item Peak-to-mean ratio
-%    \item Inter-quartile range
-%\end{itemize}}
+T, Figure \ref{fig:Demand_hist} shows the demand histogram shifted to the left, indicating lower loads. The lighter colour (i.e.mostly yellow) peak for the post-action demand show that the range of most occurring demand values is now narrower, meaning there is less variation. Otherwise, the pre-action demand shows a more disperse and even occurrence profile which looks slightly bi-modal. The bi-modality, meaning that two occurrence centres exist. 
+
+% DKComment: not sure if this is written about the right figure. While during non-work hours the profile is levelled on the base load and work-hours show another load centre. In conclusion, the effects taken after the COVID-19 actions denoting a higher occurrence of lower demands which results in a smoother load profile.
 
 
+
+\begin{figure}[H] 
+\centering
+\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Demand_hist_coloured_sidebyside.pdf}
+\caption{Comparison of pre- and post-COVID-19 demand histograms with normalised occurrences. The range of colours from yellow to dark blue correspond to the highest and lowest values.}\label{fig:Demand_hist}
+\end{figure}  
+
+
+% \textcolor{purple}{
+% \textbf{Quick Results so far}
+% \begin{itemize}
+%     \item 1 hour shift in "morning peak" - 9 am to 8 am and "evening peak" - 6 pm to 7 pm
+%     \item Steeper climb to the "evening peak" - used to be 7500 MW increase over 4 hours, now it is 9500 MW increase in 5 hours.
+%     \item Overall decrease in Peak-to-Mean ratio -except  7, 8, 9 am. However, it seems to follow the same morning trend as the pre data which had its max PtM value at 6 am at 0.18. This peak is delayed to 8 am and decreased by 1. 
+%     \item Speculation: People wake up later, cook earlier - change in heating demand.
+%     \item Standard deviation is smaller by a third of its original value (i.e. 6085). Presumably, this could explain the better performance of forecasting algorithms.
+% \end{itemize}
+% }
+Figure \ref{fig: var_dem} uses a ratio of standard deviation to mean in order to quantify the variation in the consumption profile. It suggests an overall lower variation in the post-COVID-10 profile with a largest variation in the morning with respect to the mean. The evening variation coefficient is also remarkably lower. The overall standard deviation of the post-lockdown week is a third of the pre-lockdown week. Hence, it also connotes to the discussion of the flatter demand profile. Figure \ref{fig: var_dem} also reflect an hour delay in the morning peak (i.e. 8 to 9 a.m.) and a changed evening profile. Regarding the evening demand surge, it should also be noted the Figure \ref{fig:demand_profiles} also the post evening peaks are steeper in comparison as the morning peaks become less pronounced. For instance, on average the pre demand used to have a 7500 MW increase over 4 hours to the evening peak whereas the post-action demand escalates by 9500 MW in 5 hours. Despite the longer increase time, the relative increase is higher.
+
+
+\begin{figure}[H]
+\centering
+\hspace{-25pt}\includegraphics[width=14 cm]{Graphics/VarCoeff_comp.pdf}
+\caption{Comparison of variation coefficient to visualise the changes in system demand.}\label{fig: var_dem}
+\end{figure}  
+
+It could be speculated that this is due to the human behaviour change as the common 9 a.m. to 5 p.m. working routine may not apply to all WFH. Hence, the delay in the morning peak may suggest a later wake-up time and earlier pick-up in the evening may connote to earlier increase in heating demand, cooking and similar.
+
+% \begin{figure}[H]
+% \centering\includegraphics[width=17cm]{Graphics/PtM_ratio_Demand.pdf}
+% \caption{Overlaying the peak-to-mean ratios to compare the variation in system demand.}\label{fig: PtM_Ratio_Demand}
+% \end{figure}
 
 
 % \begin{figure}[H]
 % \centering
-% \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/CORR1.pdf}
-% \caption{Correlation of Demand and Generation by Fuel type}\label{fig:demand_profiles}
+% \hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Mean_Demand_Profile_hist.pdf}
+% \caption{}
 % \end{figure}  
+
 
 
 % \begin{table}[H]
@@ -346,9 +378,9 @@ Post & 38585 & \textcolor{red}{-20.31\%} & 27294 & \textcolor{red}{-24.08\%} & 2
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Generation Portfolio}\label{sec:Generation portfolio}
-This section focuses on how the changes in demand pattern and magnitude affected the generation portfolio. In particular, the lower demand increased the shares of variable renewable energy (VRE), namely wind and solar, and hence, impacted the conventional generation portfolio in the power system. 
+This subsection focuses on how the changes in demand pattern and magnitude affected the generation portfolio. In particular, the lower demand lead to a higher share of variable renewable energy (VRE), namely wind and solar, and consequently impacted the conventional generation portfolio in the power system. 
 
-\subsubsection{The VRE share growths}
+\subsubsection{Increase in renewable energy contribution}
 The share of generation from VRE sources increased following the COVID-19 mitigation actions and consecutive changes in the electricity demand. The hypothesis for this originates from the causality principles in electricity markets which is further supported by an example. 
 Firstly, generators in European electricity markets are scheduled in merit order, which means that the generators with the lowest marginal costs are supplying the power demand. The causality is that the VRE generators have marginal costs close to zero. Therefore, the VREs are usually scheduled before other generation technologies \cite{Winkler2016ImpactMatter}. As the VRE infrastructure already exists, is preferred in the merit order and the VRE output is not restricted by the pandemic circumstances, it is justifiably hypothesised that the changes in the demand profile and magnitude resulted in the increase of the VRE contribution. 
 
@@ -472,20 +504,20 @@ One reason could be the smoother, less variable demand profile which was recogni
 
 \subsubsection{Deviations in  System Frequency}
 
-The system frequency describe the periodic form of sinusoidal current and voltage signals in the nowadays alternating current (AC) power system. It is measured by Hertz or cycles per second. In the European power system, the frequency is standardised to 50 HZ, which describe a full sinusoidal cycle in 0.02 seconds. However, the frequency is continuously fluctuating due to the mismatch in supply and demand, and the introduction of harmonics. It is the TSO responsibility to keep the frequency within the +/-1\% limits, 50.5 and 49.5 Hz, respectively \cite{ELEXON2020ELEXONBMRS}. Any higher deviations could lead to substantial malfunctions of many devices.
+The system frequency varies continuously and reflects the real-time discrepancies between system demand and total generation. Frequency increases when there is too much generation or too little demand on the system and vice versa.
+Similar to other system operators, National Grid has a legal obligation to maintain system frequency within 49.5 and 50.5 Hertz \cite{ELEXON2020ELEXONBMRS}. This requires the system operators to accurately forecast demand and schedule generation accordingly whilst keeping a fast-response reserve or a demand action available for any unforeseen changes.
+Nonetheless, the changes in frequency are also related to the system inertia. Introduction of most VRE generators such as solar panels and some types of storage such as batteries resulted in a decreased system inertia and consequently a less stable system frequency \cite{Ela2011OperatingReserves.}. Demand-side response (DSR) and other balancing services can be activated to ensure operation within the permitted range of frequency \cite{Nationalgrid2018BalancingStatement}. Currently, there is research assessing whether the wind and solar power plants could deploy synthetic inertia in order to compensate for this problem associated with VRE generation \cite{Hansen2014AnalysisTurbines, Zeni2013VirtualTurbines, Liu2017PV-basedSystem}. 
 
-In particular, the mismatch of supply and demand is considered as main reason for the continuous frequency change \cite{ELEXON2020ELEXONBMRS}. Hereby, the frequency drops when generation is lower than demand, and rises when the generation is greater than demand. Balancing services can tackle the supply-demand mismatch between seconds and several hours guaranteeing a stable frequency \cite{Nationalgrid2018BalancingStatement}. 
-
-Figure \ref{fig:freq_weekly}, shows the frequency variation for a pre and post COVID week in the UK power system. When analysing the mean and min/max values for each week (see Table \ref{table:fre_table}), a insignificant difference below 0.2 \% indicates, the lock-down lead in the investigated time to no remarkable frequency variation.  
-
-%\textit{``System frequency is a continuously changing variable that is determined and controlled by the second-by-second (real time) balance between system demand and total generation. If demand is greater than generation, the frequency falls while if generation is greater than demand, the frequency rises.
-%National Grid has a licence obligation to control frequency within the limits specified in the `Electricity Supply Regulations', i.e. +/-1\%; of nominal system frequency (50.00Hz) save in abnormal or exceptional circumstances. National Grid must therefore ensure that sufficient generation and / or demand is held in automatic readiness to manage all credible circumstances that might result in frequency variations.
-%%Note that whilst the graph updates approximately every 2 minutes, the underlying data is shown at 15 second granularity.''
-%}
-%to be rephrased from BM Reports - Elexon
+An abrupt change in the demand, like the one due to the lockdown, is expected to negatively affect the frequency. In this case, the frequency is expected to rise as the decrease in demand would result in a surplus of generation.
+When analysed in its barest form, no significant discrepancies are observed for a pre and post COVID week. The mean and minimum and maximum frequency values also conclude an insignificant difference below 0.2 \% difference - see Table \ref{table:freq_table}. Despite the fact that both the minimum and maximum frequency values for the post-action week are higher than the pre-action week, the analysis is not sufficient to state a remarkable frequency variation due to the lock-down or perhaps more likely that it shows that the frequency was maintained well by the National Grid. 
+% \begin{figure}[H]
+% \centering
+% \hspace{-25pt}\includegraphics[trim={1cm 0cm 0 0.4cm}, clip, width=16.5 cm]{Graphics/Freq_pre_post_weekly.pdf}
+% \caption{Comparison of pre and post-action system frequency where the y-axis is frequency in Hertz with 50 Hz being the nominal frequency.} \label{fig:freq_weekly}
+% \end{figure}  
 
 \begin{table}[H]
-\caption{Comparison of statistical descriptors to quantify the changes in the system frequency pre- and post-COVID-19 mitigation actions.}\label{table:fre_table}
+\caption{Comparison of descriptors to quantify the changes in the system frequency pre- and post-COVID-19 mitigation actions.}\label{table:freq_table}
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g., \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{cccc}
@@ -499,44 +531,45 @@ Post	& 49.998657			& 49.775000         &50.267000\\
 \end{tabular}
 \end{table}
 
+Hence, a normalised occurrence study is carried out to assess the distribution of system frequency in Figure \ref{fig:freq_hist}. The distribution for the post-action data has more defined peak around 50 Hz and its distribution width from 49.9 to 50.1 Hz is narrower. This suggests that the frequency was maintained within a stricter window than the pre-action week. The concentration of occurrence is below 50 Hz pre-lockdown whilst values above the nominal values are recorded more frequently after the lock-down (where the range of colours from yellow to dark blue in Figure \ref{fig:freq_hist} represents the highest to lowest occurrence respectively).
+Hence, this displays a shift in the system frequency distribution, pointing out the increase in high frequency records. 
+
+% When compared, the post-action frequency is narrower which suggests that more frequency corrections actions were taken.
+% , however, indicates that the highest frequency occurrence changed from below 50 Hz to above 50 Hz at the post-COVID week. ???Not sure. Difference is not really clear as also x-axis changed. Any impacts???
 
 \begin{figure}[H]
 \centering
-\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Freq_pre_post_weekly.pdf}
-\caption{Comparison of Pre and Post-action System Frequency  ----- Demand on the left side must be replaced by "Frequency [Hz]" -----} \label{fig:freq_weekly}
+
+\hspace{-25pt}\includegraphics[ width=15 cm]{Graphics/NEW_Freq_hist_side_by_side.pdf}
+\caption{Comparison of pre and post-action system frequency histograms} \label{fig:freq_hist}
 \end{figure}  
 
-The Gaussian distribution in Figure \ref{fig:freq_hist}, however, indicates that the highest frequency occurrence changed from below 50 Hz to above 50 Hz at the post-COVID week. ???Not sure. Difference is not really clear as also x-axis changed. Any impacts???
-
-\begin{figure}[H]
-\centering
-
-\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/Freq_hist_side_by_side.pdf}
-\caption{Comparison of Pre and Post-action System Frequency Histograms} \label{fig:freq_hist}
-\end{figure}  
-
-1. Peak-to-Mean ratio increased during lunch
-2. Peak-to-Mean ration increased during "prime time"
-3. Peak-to-Mean ratio decreased at night
-4. Peak-to-Mean ration decreased in the morning and afternoon
-????? INTERPRETATION PARTLY UNCLEAR ????? Prime time indicates more family TV times at 8pm (10 million TV´s equals demand of roughly 7GW)
+One reason for this may be the decreased load profile, resulting a generation surplus, thus increasing the frequency - as discussed in Section \ref{section: Effect on demand profile}.
+A peak-to-mean analysis is performed on both pre- and post-action data to compare the degree of variation. The frequency data is indexed by the time of the day. The most significant observation is regarding the high peak-to-mean ratio calculated for 8 p.m. for the post-COVID-19 week. This maybe because of the unforeseen changes in the shape of the consumption profile - this is discussed in Section \ref{section: Effect on demand profile}.
+% 1. Peak-to-Mean ratio increased during lunch
+% 2. Peak-to-Mean ration increased during "prime time"
+% 3. Peak-to-Mean ratio decreased at night
+% 4. Peak-to-Mean ration decreased in the morning and afternoon
+% ????? INTERPRETATION PARTLY UNCLEAR ????? Prime time indicates more family TV times at 8pm (10 million TV´s equals demand of roughly 7GW)
 
 
 \begin{figure}[H]
 \centering
-\hspace{-25pt}\includegraphics[width=14 cm]{Graphics/Freq_PtM.pdf}
-\caption{Comparison of Pre and Post-action System Frequency Peak-to-Mean Ratios} \label{fig:freq_hist}
+\hspace{-25pt}\includegraphics[width=14 cm]{Graphics/NEW_Freq_PtM_comp.pdf}
+\caption{Comparison of Pre and Post-action System Frequency Peak-to-Mean Ratios} \label{fig:freq_PtM}
 \end{figure}  
 
-1. Frequency is varying/changing/jumping less on average. Maybe due to the lower peak to base-load ratio ("smoother profile").
+% 1. Frequency is varying/changing/jumping less on average. Maybe due to the lower peak to base-load ratio ("smoother profile").
 
-\begin{figure}[H]
-\centering
-\hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/FFreq_VarCoeff_comp_2.pdf}
-\caption{Comparison of Pre and Post-action System Frequency Variation Coefficient} \label{fig:freq_hist}
-\end{figure}  
+% \begin{figure}[H]
+% \centering
+% \hspace{-25pt}\includegraphics[width=16.5 cm]{Graphics/FFreq_VarCoeff_comp_2.pdf}
+% \caption{Comparison of Pre and Post-action System Frequency Variation Coefficient} \label{fig:freq_hist}
+% \end{figure}  
 
-Moreover, the on average higher share of VRE generation assets (see \ref{generation_effects}) makes the power system more prone for rapid frequency changes \cite{Ela2011OperatingReserves.}. The reason behind this is the change of inertia in the power system. Inertia is provided by conventional synchronous generators, such as in coal, gas, biomass or hydro plants representing spinning masses that store kinetic energy. When for instance, the frequency drops, the rotation of the synchronous generators reduces, providing extra kinetic energy which lowers the supply-demand mismatch or frequency drop. Therefore, a power system with lower inertia, such in case when the share of VRE is high, lead to higher frequency changes in short-term, before any balancing reserve helps out to clear the imbalance. In future, wind and solar power plants could deploy synthetic inertia such described in \cite{Hansen2014AnalysisTurbines, Zeni2013VirtualTurbines, Liu2017PV-basedSystem} to reduce the lack of inertia in VRE dominant power systems.
+% Moreover, the on average higher share of VRE generation assets (see \ref{sec:Generation portfolio}) makes the power system more prone for rapid frequency changes \cite{Ela2011OperatingReserves.}. The reason behind this is the change of inertia in the power system. Inertia is provided by conventional synchronous generators, such as in coal, gas, biomass or hydro plants representing spinning masses that store kinetic energy. When for instance, the frequency drops, the rotation of the synchronous generators reduces, providing extra kinetic energy which lowers the supply-demand mismatch or frequency drop. Therefore, a power system with lower inertia, such in case when the share of VRE is high, lead to higher frequency changes in short-term, before any balancing reserve helps out to clear the imbalance. 
+
+
 
 
 %Impact of changing generation portfolio on frequency.
@@ -587,8 +620,9 @@ The effect of higher VRE shares explains the slightly poorer performance of the 
 
 Loss of load probability (LOLP) is an indicator for system reliability measured by the system operator for each settlement period \cite{ELEXON2019GuidanceBritain}. For instance, when National Grid predicts higher probability of loss of load, the balancing mechanism is willing to pay higher prices for balancing at the time of reserve scarcity. The methodology to calculate the LOLP can be found in \cite{Elexon2019LossStatement}. The higher prices at high LOLP levels are also known as reserve scarcity prices, which are the product of LOLP and the value of lost load (VoLL). Whereby, the VoLL is determined through the assessment of how much value consumers on average attribute to the security of supply - currently set on £6000/MWh \cite{ELEXON2019GuidanceBritain}. 
 
-\[ \text{Reserve Scarcity Price} = \text{Lost of Load Probability} * \text{Value of Lost Load} \]
-
+\begin{equation}\label{eq:reservescarc}
+Reserve Scarcity Price = Lost of Load Probability \times Value of Lost Load
+\end{equation}
 Due to the abrupt changes in the demand profile and eventually the inflexibility of the available generation, National Grid predicted a higher LOLP during the evening of the 25th of March which is the first official day of lock-down (see Figure \ref{fig:LOLP_25_03}). Despite the fact that it was predicted 12 hours in advance, the 1 hour ahead LOLP forecast is 4.5 times higher. This implies that there was a reserve scarcity and/or that the grid was under stress.
 
 \begin{figure}[H]\centering
@@ -596,8 +630,8 @@ Due to the abrupt changes in the demand profile and eventually the inflexibility
 \caption{LOLP variation Pre and Post.}\label{fig:LOLP_25_03}
 \end{figure}  
 
-\subsubsection{Network constraints}\label{section: network constraints}
-The electrical network loading's will decrease on average but some network sections might reveal higher utilisation. The lower average demand in GB, imply less energy is transported through the power lines which results in reduced network loads. However, some other network sections could increase in loading as centralised renewable energy sources will transport energy for longer distances. The reason for longer transported energy is the lower electricity consumption closer to the VRE generators. For instance, the massive wind capacities installed in Great Britain's North - i.e. Scotland, providing energy up the southern part - i.e. London; when the net consumption in GB decreases, less energy will be directly consumed in the north and lead finally to higher network loads along the transmission lines at high wind and solar times. Therefore, even when the load in most networks will decrease some networks might experience the contrary.
+% \subsubsection{Network constraints}\label{section: network constraints}
+% The electrical network loading's will decrease on average but some network sections might reveal higher utilisation. The lower average demand in GB, imply less energy is transported through the power lines which results in reduced network loads. However, some other network sections could increase in loading as centralised renewable energy sources will transport energy for longer distances. The reason for longer transported energy is the lower electricity consumption closer to the VRE generators. For instance, the massive wind capacities installed in Great Britain's North - i.e. Scotland, providing energy up the southern part - i.e. London; when the net consumption in GB decreases, less energy will be directly consumed in the north and lead finally to higher network loads along the transmission lines at high wind and solar times. Therefore, even when the load in most networks will decrease some networks might experience the contrary.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %\subsection{Ancillary Services/Demand-side Response}
@@ -606,14 +640,14 @@ The electrical network loading's will decrease on average but some network secti
 \subsection{The effects on Market Price}\label{section:Market price}
 
 %%%%%%%%%%%%%%%
-\subsubsection{Day-Ahead wholesale market price}\label{sec:day-ahead wholesale market price}
+\subsubsection{Day-ahead wholesale market price}\label{sec:day-ahead wholesale market price}
 
-The Day-Ahead market objective is to define a clearing energy price in which supply meets the demand at any given hour of the day. To do so, a merit order model is used to correctly dispatch power plants by sorting the existing generation units from low to high marginal operating costs. Once the generation meets the demand curve the clearing market price or equilibrium is achieved by minimising the generation cost \cite{Maekawa2018TheExchange}. Figure \ref{fig:wholesale-market-effects} shows graphically the process of the merit order model and the location of the clearing price as a result of the intersection of the supply and demand curves. The demand is given as net demand which subtracts the VRE generation from the total demand. This is a common strategy to illustrate the merit-order, since the solar and wind generation plants have marginal cost close to zero, making them always dispatched so far no network or other operational constraints exist \cite{Hirth2014TheVariability}. 
+The day-ahead market objective is to define a clearing energy price in which supply meets the demand at any given hour of the day. To do so, a merit order model is used to correctly dispatch power plants by sorting the existing generation units from low to high marginal operating costs. Once the generation meets the demand curve the clearing market price or equilibrium is achieved by minimising the generation cost \cite{Maekawa2018TheExchange}. Figure \ref{fig:wholesale-market-effects} shows graphically the process of the merit order model and the location of the clearing price as a result of the intersection of the supply and demand curves. The demand is given as net demand which subtracts the VRE generation from the total demand. This is a common strategy to illustrate the merit-order, since the solar and wind generation plants have marginal cost close to zero, making them always dispatched so far no network or other operational constraints exist \cite{Hirth2014TheVariability}. 
 
 \begin{figure}[H]
 \centering
 \hspace{-25pt}
-\includegraphics[trim={4cm 3cm 3.5cm 4.5cm},clip,width=1.3\textwidth]{Graphics/Wholesale-market-price.pdf}
+\includegraphics[trim={5cm 3cm 10cm 4.5cm},clip,width=13cm]{Graphics/Wholesale-market-price.pdf}
 \caption{Illustrative effects of the COVID-situation on the wholesale market price.}
 \label{fig:wholesale-market-effects}
 \end{figure} 
@@ -623,7 +657,7 @@ The Day-Ahead market objective is to define a clearing energy price in which sup
 
 The imbalance price is the price set by the system operator for every settlement period to determine imbalance charges on electricity producers (generators) or consumers (suppliers) \cite{ELEXON2019GuidanceBritain}. Whereby the imbalance charge for a settlement period simply consist of the product of imbalance volume (see section \ref{section:ImbalanceVolume}) and imbalance price:
 
-\[ \text{Imbalance charge}_{SP} = \text{Imbalance volume}_{SP} * \text{Imbalance price}_{SP} \]
+\[ \text{Imbalance charge}_{SP} = \text{Imbalance volume}_{SP} \times \text{Imbalance price}_{SP} \]
 
 To understand possibles impacts of the COVID situation on the imbalance price, it dismantled in its components. The imbalance price is the price which must be paid for actions that the system operator choose to resolve the imbalance. However, the reason for the balancing action can vary. It could be either a i) energy balancing or ii) system balancing motivated action in the 30min settlement period \cite{ELEXON2019GuidanceBritain}. 
 
@@ -648,7 +682,7 @@ The impacts of the lower demand at the lock-down times could potentially both in
 \begin{figure}[H]
 \centering
 \hspace{-25pt}
-\includegraphics[trim={4cm 6.3cm 5cm 1cm},clip,width=1\textwidth]{Graphics/Imbalance-price-trade-off.pdf}
+\includegraphics[trim={4cm 6.3cm 5cm 1cm},clip,width=13cm]{Graphics/Imbalance-price-trade-off.pdf}
 \caption{The impact of lower demand on the imbalance price}
 \label{fig:imbalance-trade-off}
 \end{figure} 
@@ -665,38 +699,30 @@ The impacts of the lower demand at the lock-down times could potentially both in
 %There are two energy imbalance prices for each Settlement Period. These are:System Buy Price (SBP); and System Sell Price (SSP).However there is a single price calculation, so SBP will equal SSP in each Settlement Period. ELEXON apply these prices to Parties’ imbalances to determine their imbalance charges. A Party is out of balance when its contracted energy volume does not match its physical production orconsumption.
 
 \subsubsection{Variable Pricing for Domestic Consumers}
-The case for variable pricing for domestic consumers was made by numerous studies \cite{REF!}. It is a more consumer-centric approach where the domestic consumers are billed using the same half-hourly prices as the commercial ones rather than having a fixed tariff (i.e. a volumetric calculation using a fixed £/kWh rate). There is also the commonly known time-of-use (TOU) pricing where the £/kWh rate varies for different times of the day which usually correlates to higher rates for higher demand periods. For instance, electricity prices from 4 to 7 pm woudl be higher to reflect the evening peak whereas from 1 am to 4 am when the demand is usually low, the prices would be lower. Hence, this method of pricing would also result in demand shifting.The case for variable pricing for domestic consumers was made by numerous studies \cite{REF!}. It is a more consumer-centric approach where the domestic consumers are billed using the same half-hourly prices as the commercial ones rather than having a fixed tariff (i.e. a volumetric calculation using a fixed £/kWh rate). There is also the commonly known time-of-use (TOU) pricing where the £/kWh rate varies for different times of the day which usually correlates to higher rates for higher demand periods. For instance, electricity prices from 4 to 7 pm woudl be higher to reflect the evening peak whereas from 1 am to 4 am when the demand is usually low, the prices would be lower. Hence, this method of pricing would also result in demand shifting.
+The case for variable pricing for domestic consumers was made by numerous studies \cite{REF!}. It is a more consumer-centric approach where the domestic consumers are billed using the same half-hourly prices as the commercial ones rather than having a fixed tariff (i.e. a volumetric calculation using a fixed £/kWh rate). There is also the commonly known time-of-use (ToU) pricing where the £/kWh rate varies for different times of the day which usually correlates to higher rates for higher demand periods. For instance, electricity prices from 4 to 7 p.m. would be higher to reflect the evening peak whereas from 1 am to 4 am when the demand is usually low, the prices would be lower. Hence, this method of pricing would also result in demand shifting.
 
-
-
-
-
-
-A British energy supplier called Octopus \cite{AgileEnergy} introduced their "Agile" electricity tariff in which is an indexed half-hourly dynamic pricing that tracks the wholesale price of electricity (i.e. the domestic rate paid changes every 30 minutes instead of a fixed monthly rate). On different occasions, this has resulted in negative pricing (i.e. the energy supplier paid its customers use electricity). However, this also means that there is usually a steep price from 4pm to 7pm during the evening consumption peak. The following logic in Eq. \ref{eq:Octopus}, is used to determine the prime time pricing. It uses the of the distribution cost coefficient ($\tau$) multiplied by the wholesale cost of electricity ($W$) and $P$ which is the peak-time premium (which is equal to 12p/kWh during prime time). Then it caps the price to £35p/kWh if the previous outcome is higher than this value. This is because on average the fixed tariff are in the range of 15-20p/kWh and it could be argued exposing domestic consumers to extreme fluctuations in the system would be unfair.
+A British energy supplier called Octopus \cite{AgileEnergy} introduced their "Agile" electricity tariff in which is an indexed half-hourly dynamic pricing that tracks the wholesale price of electricity (i.e. the domestic rate paid changes every 30 minutes instead of a fixed monthly rate). On different occasions, this has resulted in negative pricing (i.e. the energy supplier paid its customers to consume electricity). However, this also means that there is usually a steep price from 4pm to 7pm during the evening consumption surge. The following logic in Eq. \ref{eq:Octopus}, is used to determine the prime time pricing \cite{AgileEnergyb}. It uses the distribution cost coefficient ($\tau$) multiplied by the wholesale cost of electricity ($W$) and $P$ which is the peak-time premium (which is equal to 12p/kWh during prime time). Then it caps the price to £35p/kWh if the previous outcome is higher than this value \cite{AgileEnergyb}. This is because on average the fixed tariff are in the range of 15-20p/kWh and it could be argued exposing domestic consumers to extreme fluctuations in the system would be unfair.
 
 \begin{equation}\label{eq:Octopus}
 min((\tau \times W + P), 35p/kWh)
 \end{equation}
 
-Octopus GO
-
-
-\begin{figure}[H]\centering
-\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/Pre-post_Agilecomp_negative.pdf}
-\caption{Negative electricity pricing - 4th March was the highest }\label{fig:neg_agile_comp_prepost}
-\end{figure}  
-
-The Balancing Mechanism System Price peaked at £2,242/MWh on the 4th of March 2020 which marks the first time a system price is over £2,000/MWh since 2001 \cite{ELEXON2020ELEXONBMRS}. 
+% Octopus GO
+In Figure \ref{fig:neg_agile}, an example of capping at the maximum price of 35p/kWh is shown on the 4\textsuperscript{th} of March 2020 (i.e. during the pre-COVID-19 week). This day marks the first time a system price was over £2,000/MWh since 2001. It peaked at £2,242/MWh \cite{ELEXONELEXONb} (See \ref{LOLPDRM_Week_starting_2020-03-23no4H} for the LOLP plot and visit Section \ref{section:LOLP_DRM} for more information). The week commencing on the 30\textsuperscript{th} of March 2020 is of interest for comparison with the other extreme, namely negative pricing, as it drops to near -3 pence per kilowatt-hour. Similar to the analysis in Section \ref{section: Effect on demand profile}, the reduction in demand magnitude and changes in profile are correlated to the changes between pre- and post-action pricing profiles in Figure \ref{fig:neg_agile}.
 
 \begin{figure}[H]\centering
-\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/Pre-post_AgileOUTGO_negative_comp.pdf}
-\caption{Corresponding Agile outgoing sell prices.}\label{fig:neg_agile_comp_prepost}
+\hspace{-25pt}\includegraphics[trim={0 0 0 1.5cm}, clip,width=15 cm]{Graphics/Pre-post_Agilecomp_negative.pdf}
+\caption{Examples of price capping and negative pricing during pre- and post-COVID-19 weeks respectively -using the data from \cite{HomeUK}.}\label{fig:neg_agile}
 \end{figure}  
+
+% The system price for the balancing mechanism peaked at £2,242/MWh  which marks the first time a system price is over £2,000/MWh since 2001 \cite{ELEXONELEXONb}. 
+
+
 
 Since the launch of the Agile tariff, there has been 96 occurrences of negative pricing (i.e. price < 0p/kWh). Almost 70\% of these events (i.e. 67 out of 96) took place post-COVID-19 actions. Table \ref{table:neg_agile_table} summarises the pre and post negative pricing events highlighting the highest price the consumers were paid to use electricity and the corresponding dates.
 
 \begin{table}[H]
-\caption{Analysis of Negative Pricing usingthe  Agile Tariff data from Octopus \cite{AgileEnergy} }\label{table:neg_agile_table}
+\caption{Analysis of negative pricing in the  Agile tariff -using the data from \cite{HomeUK}}\label{table:neg_agile_table}
 \centering
 %% \tablesize{} %% You can specify the fontsize here, e.g., \tablesize{\footnotesize}. If commented out \small will be used.
 \begin{tabular}{ccccc }
@@ -710,6 +736,12 @@ Overall (p/kWh) & -1.44			& -0.02         & -4.85 &09-12-2019\\
 \end{tabular}
 \end{table}
 
+Octopus also provides variable pricing for selling electricity \cite{AgileEnergy}. The corresponding sell prices are plotted in Figure \ref{fig:agile_OUT}. The highest sell price around 19p/kWh was recorded which corresponds to the day with the highest system price since 2001. The benefit is passed on to the distributed generators. In the case of negative load pricing when the consumers were paid to use electricity on the 5\textsuperscript{th} of May, there would also negative pricing for exporting electricity (i.e. generators pay to export electricity). The pricing for generation is capped at a minimum of 0p/kWh which indicates that the energy was exported for free during that period as shown in Figure \ref{fig:agile_OUT}.
+
+\begin{figure}[H]\centering
+\hspace{-25pt}\includegraphics[trim={0 0 0 1.5cm}, clip, width=15 cm]{Graphics/Pre-post_AgileOUTGO_negative_comp.pdf}
+\caption{Corresponding Agile outgoing sell prices.-using the data from \cite{HomeUK}}\label{fig:agile_OUT}
+\end{figure}  
 
 %===============================================================
 %                           DISCUSSION
@@ -735,7 +767,14 @@ Several indicators suggest that the current situation in GB cannot be compared w
 
 Nevertheless, the inconvenient COVID situation could imply two future important points: The imbalance could increase, stressing the grid stability if the TSO is not prepared; and that network constraints might block smooth operation. Both points can be a more severe problem in the future power system which should be anticipated by system operators. 
  
-%MPComment: Think a table is nice, however, a word table would look more appealing
+\begin{figure}[H]
+\centering
+\hspace{-25pt}
+\includegraphics[trim={1cm 4.5cm 0cm 1.5cm},clip,width=1.1\textwidth]{Graphics/Key-findingsV3.pdf}
+\caption{Summarised key results}
+\label{fig:key-results}
+\end{figure} 
+
 \begin{table}[H]
 \caption{Summarised key results.
 }\label{table:Summary key results}
@@ -820,13 +859,13 @@ Beside the imbalance, generators and suppliers, will suffer from the disruptive 
 
 Aggregators and Demand side response (DSR) providers are expected to be more often scheduled because of the larger imbalance volume observed after the lock-down. The only requirement for them is to be more competitive then the new entering flexibility's from the non-scheduled power plants. If so, aggregators and DSR providers will benefit from the COVID-19 crisis.
 
-\begin{figure}[H]
-\centering
-\hspace{-25pt}
-\includegraphics[trim={2cm 3cm 2cm 3.5cm},clip,width=1\textwidth]{Graphics/Stakeholder - lock-down implications.pdf}
-\caption{The implication of the lock-down on the various stakeholders}
-\label{fig:imbalance-price-trade-off}
-\end{figure} 
+% \begin{figure}[H]
+% \centering
+% \hspace{-25pt}
+% \includegraphics[trim={2cm 3cm 2cm 3.5cm},clip,width=1\textwidth]{Graphics/Stakeholder - lock-down implications.pdf}
+% \caption{The implication of the lock-down on the various stakeholders}
+% \label{fig:imbalance-price-trade-off}
+% \end{figure} 
 
 
 
@@ -854,7 +893,7 @@ Aggregators and Demand side response (DSR) providers are expected to be more oft
 & Fix cost per generated or supplied kWh increases \\\\
 
 \multirow{3}{10em}{Aggregator and DSR provider} 
-& Benefit, if scheduled more often \\ \\
+& Benefit, if scheduled more often \\ \\ \\
 
 \multirow{1}{10em}{Domestic and Industrial consumer} 
 & Fixed pricing. Electricity price impact vague,\\ & since lower wholesale market prices might not be transferred by supplier \\\\ 
@@ -903,57 +942,66 @@ This section is not mandatory, but can be added to the manuscript if the discuss
 \conflictsofinterest{The authors declare no conflict of interest. The funders had no role in the design of the study; in the collection, analyses, or interpretation of data; in the writing of the manuscript, or in the decision to publish the results.} 
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% optional
-\abbreviations{The following abbreviations are used in this manuscript:\\
+% %% optional
+% \abbreviations{The following abbreviations are used in this manuscript:\\
 
-\noindent 
-\begin{tabular}{@{}ll}
-MDPI & Multidisciplinary Digital Publishing Institute\\
-DOAJ & Directory of open access journals\\
-TLA & Three letter acronym\\
-LD & linear dichroism
-\end{tabular}}
+% \noindent 
+% \begin{tabular}{@{}ll}
+% MDPI & Multidisciplinary Digital Publishing Institute\\
+% DOAJ & Directory of open access journals\\
+% TLA & Three letter acronym\\
+% LD & linear dichroism
+% \end{tabular}}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %% optional
 \appendixtitles{no} %Leave argument "no" if all appendix headings stay EMPTY (then no dot is printed after "Appendix A"). If the appendix sections contain a heading then change the argument to "yes".
 \appendix
-\section{Agile Tariff}
+\section{Extras}
 
 \begin{figure}[H]
 \centering
+\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/Characteristic_Profiles_pre_post.pdf}
+\end{figure}
+
+\section{The Data Pipeline\label{section:PipelineCode}}
+%%%INSERT py file - auto-conversion will hopefully work here%%%%
+% \lstinputlisting[language=Python]{source.py}
+
+\section{Agile Tariff Plots}
+For completeness, the plots for the pre and post-COVID-19 weeks (i.e. week commencing on the 2\textsuperscript{nd} and 23\textsuperscript{rd} of March 2020) used for demand and system frequency analysis are included.
+\begin{figure}[H]
+\centering
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/Pre-post_Agilecomp.pdf}
-\caption{Octopus Agile Pricing comparison of before and after the COVID-19 actions.}\label{fig:agile_comp_prepost}
+\caption{Octopus Agile Pricing comparison of before and after the COVID-19 actions.-using the data from \cite{HomeUK}}\label{fig:agile_comp_prepost}
 \end{figure}
 
 \begin{figure}[H]\centering
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/Pre-post_AgileOUTGO_comp.pdf}
-\caption{Octopus Agile sell pricing comparison of before and after the COVID-19 actions.}\label{fig:agile_OUT_comp_prepost}
+\caption{Octopus Agile sell pricing comparison of before and after the COVID-19 actions.-using the data from \cite{HomeUK}}\label{fig:agile_OUT_comp_prepost}
 \end{figure}  
-\section{LOLP \& DRM}
-
-\begin{figure}[H]\centering
-\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-02.pdf}
-\caption{}\label{}
-\end{figure}  
+\section{LOLP Plots}
+For completeness, the LOLP plots for the pre and post-COVID-19 weeks (i.e. week commencing on the 2\textsuperscript{nd} and 23\textsuperscript{rd} of March 2020) used for demand and system frequency analysis are included.
+% \begin{figure}[H]\centering
+% \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-02.pdf}
+% \caption{}\label{}
+% \end{figure}  
 \begin{figure}[H]\centering
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-02no4H.pdf}
-\caption{}\label{}
+\caption{LOLP plot for the pre-COVID-19 action week.}\label{LOLPDRM_Week_starting_2020-03-02no4H}
 \end{figure}  
-\begin{figure}[H]\centering
-\hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-23.pdf}
-\caption{}\label{}
-\end{figure}  
+% \begin{figure}[H]\centering
+% \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-23.pdf}
+% \caption{}\label{}
+% \end{figure}  
 \begin{figure}[H]\centering
 \hspace{-25pt}\includegraphics[width=15 cm]{Graphics/LOLPDRM_Week_starting_2020-03-23no4H.pdf}
-\caption{}\label{}
+\caption{LOLP plot for the post-COVID-19 action week.}\label{LOLPDRM_Week_starting_2020-03-23no4H}
 \end{figure}  
 
 
 
-\unskip
-\subsection{}
-The appendix is an optional section that can contain details and data supplemental to the main text. For example, explanations of experimental details that would disrupt the flow of the main text, but nonetheless remain crucial to understanding and reproducing the research shown; figures of replicates for experiments of which representative data is shown in the main text can be added here if brief, or as Supplementary data. Mathematical proofs of results not central to the paper can be added as an appendix.
+
 
 
 %===============================================================
@@ -961,22 +1009,10 @@ The appendix is an optional section that can contain details and data supplement
 %===============================================================
 
 \reftitle{References}
-
 \externalbibliography{yes}
 \bibliography{references.bib}
 \bibliography{referencesmax.bib}
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-%% optional
-% \sampleavailability{Samples of the compounds ...... are available from the authors.}
 
-%% for journal Sci
-%\reviewreports{\\
-%Reviewer 1 comments and authors’ response\\
-%Reviewer 2 comments and authors’ response\\
-%Reviewer 3 comments and authors’ response
-%}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \end{document}
 
 
